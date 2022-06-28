@@ -126,12 +126,16 @@ switch_profiles = {
         sub_port  = false
       },
       {
-        interface = "1/29"
-        sub_port  = false
+        interface             = "1/29"
+        interface_description = "142b-core01-Eth1/26"
+        policy_group          = "default"
+        sub_port              = false
       },
       {
-        interface = "1/30"
-        sub_port  = false
+        interface             = "1/30"
+        interface_description = "142b-core02-Eth1/26"
+        policy_group          = "default"
+        sub_port              = false
       },
       {
         interface = "1/31"
@@ -160,7 +164,7 @@ switch_profiles = {
       }
     ]
     pod_id        = 1
-    role          = "spine"
-    serial_number = "FDO224819PQ"
+    role          = "unspecified"
+    serial_number = "FDO25151AEK"
   }
 }

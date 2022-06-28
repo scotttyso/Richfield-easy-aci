@@ -39,7 +39,7 @@ vrfs = {
       }
     ]
     ip_data_plane_learning = "enabled"
-    known_multicast_allow  = true
+    layer3_multicast       = true
     monitoring_policy      = "default"
     ospf_timers            = "default"
     ospf_timers_per_address_family = [

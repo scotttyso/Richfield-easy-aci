@@ -110,38 +110,44 @@ switch_profiles = {
         sub_port  = false
       },
       {
-        interface = "1/25"
-        sub_port  = false
+        interface             = "1/25"
+        interface_description = "odin-ucs-a-Eth1/53"
+        policy_group          = "vpc025"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/26"
-        sub_port  = false
+        interface             = "1/26"
+        interface_description = "odin-ucs-b-Eth1/53"
+        policy_group          = "vpc026"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
         interface             = "1/27"
-        interface_description = "143b-core01-Eth1/27"
-        policy_group          = "l3out"
+        interface_description = "heimdall-ucs-a-Eth1/53"
+        policy_group          = "vpc027"
         policy_group_type     = "bundle"
         sub_port              = false
       },
       {
         interface             = "1/28"
-        interface_description = "143b-core02-Eth1/27"
-        policy_group          = "l3out"
+        interface_description = "heimdall-ucs-b-Eth1/53"
+        policy_group          = "vpc028"
         policy_group_type     = "bundle"
         sub_port              = false
       },
       {
         interface             = "1/29"
-        interface_description = "asgard-ucs-a-Eth1/97"
-        policy_group          = "vpc029"
+        interface_description = "142b-core01-Eth1/27"
+        policy_group          = "l3out"
         policy_group_type     = "bundle"
         sub_port              = false
       },
       {
         interface             = "1/30"
-        interface_description = "asgard-ucs-b-Eth1/97"
-        policy_group          = "vpc030"
+        interface_description = "142b-core02-Eth1/27"
+        policy_group          = "l3out"
         policy_group_type     = "bundle"
         sub_port              = false
       },
@@ -180,7 +186,7 @@ switch_profiles = {
       }
     ]
     pod_id        = 1
-    role          = "leaf"
+    role          = "unspecified"
     serial_number = "FDO232415ML"
   }
   202 = {
@@ -289,38 +295,44 @@ switch_profiles = {
         sub_port  = false
       },
       {
-        interface = "1/25"
-        sub_port  = false
+        interface             = "1/25"
+        interface_description = "odin-ucs-a-Eth1/54"
+        policy_group          = "vpc025"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/26"
-        sub_port  = false
+        interface             = "1/26"
+        interface_description = "odin-ucs-b-Eth1/54"
+        policy_group          = "vpc026"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
         interface             = "1/27"
-        interface_description = "143b-core01-Eth1/28"
-        policy_group          = "l3out"
+        interface_description = "heimdall-ucs-a-Eth1/54"
+        policy_group          = "vpc027"
         policy_group_type     = "bundle"
         sub_port              = false
       },
       {
         interface             = "1/28"
-        interface_description = "143b-core02-Eth1/28"
-        policy_group          = "l3out"
+        interface_description = "heimdall-ucs-b-Eth1/54"
+        policy_group          = "vpc028"
         policy_group_type     = "bundle"
         sub_port              = false
       },
       {
         interface             = "1/29"
-        interface_description = "asgard-ucs-a-Eth1/98"
-        policy_group          = "vpc029"
+        interface_description = "142b-core01-Eth1/28"
+        policy_group          = "l3out"
         policy_group_type     = "bundle"
         sub_port              = false
       },
       {
         interface             = "1/30"
-        interface_description = "asgard-ucs-b-Eth1/98"
-        policy_group          = "vpc030"
+        interface_description = "142b-core02-Eth1/28"
+        policy_group          = "l3out"
         policy_group_type     = "bundle"
         sub_port              = false
       },
@@ -359,7 +371,7 @@ switch_profiles = {
       }
     ]
     pod_id        = 1
-    role          = "leaf"
+    role          = "unspecified"
     serial_number = "FDO23191QGP"
   }
 }

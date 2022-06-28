@@ -22,10 +22,10 @@ contracts = {
         filters = [
           "any"
         ]
-        match_type  = "AtleastOne"
-        name        = "taboo_contract"
-        qos_class   = "unspecified"
-        target_dscp = "unspecified"
+        label_match_criteria = "AtleastOne"
+        name                 = "taboo_contract"
+        qos_class            = "unspecified"
+        target_dscp          = "unspecified"
       }
     ]
     target_dscp = "unspecified"
@@ -48,10 +48,10 @@ contracts = {
         filters = [
           "any"
         ]
-        match_type  = "AtleastOne"
-        name        = "any"
-        qos_class   = "unspecified"
-        target_dscp = "unspecified"
+        label_match_criteria = "AtleastOne"
+        name                 = "any"
+        qos_class            = "unspecified"
+        target_dscp          = "unspecified"
       }
     ]
     target_dscp = "unspecified"

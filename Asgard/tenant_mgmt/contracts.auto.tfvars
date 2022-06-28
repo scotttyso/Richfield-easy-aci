@@ -22,10 +22,10 @@ contracts = {
         filters = [
           "mgmt_in"
         ]
-        match_type  = "AtleastOne"
-        name        = "inband_in"
-        qos_class   = "unspecified"
-        target_dscp = "unspecified"
+        label_match_criteria = "AtleastOne"
+        name                 = "inband_in"
+        qos_class            = "unspecified"
+        target_dscp          = "unspecified"
       }
     ]
     target_dscp = "unspecified"
@@ -48,10 +48,10 @@ contracts = {
         filters = [
           "mgmt_out"
         ]
-        match_type  = "AtleastOne"
-        name        = "inband_out"
-        qos_class   = "unspecified"
-        target_dscp = "unspecified"
+        label_match_criteria = "AtleastOne"
+        name                 = "inband_out"
+        qos_class            = "unspecified"
+        target_dscp          = "unspecified"
       }
     ]
     target_dscp = "unspecified"
@@ -74,10 +74,10 @@ contracts = {
         filters = [
           "mgmt_in"
         ]
-        match_type  = "AtleastOne"
-        name        = "ooband_in"
-        qos_class   = "unspecified"
-        target_dscp = "unspecified"
+        label_match_criteria = "AtleastOne"
+        name                 = "ooband_in"
+        qos_class            = "unspecified"
+        target_dscp          = "unspecified"
       }
     ]
     target_dscp = "unspecified"
@@ -100,10 +100,10 @@ contracts = {
         filters = [
           "mgmt_out"
         ]
-        match_type  = "AtleastOne"
-        name        = "ooband_out"
-        qos_class   = "unspecified"
-        target_dscp = "unspecified"
+        label_match_criteria = "AtleastOne"
+        name                 = "ooband_out"
+        qos_class            = "unspecified"
+        target_dscp          = "unspecified"
       }
     ]
     target_dscp = "unspecified"

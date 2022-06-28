@@ -127,13 +127,13 @@ switch_profiles = {
       },
       {
         interface             = "1/29"
-        interface_description = "143b-core01-Eth1/24"
+        interface_description = "142b-core01-Eth1/24"
         policy_group          = "default"
         sub_port              = false
       },
       {
         interface             = "1/30"
-        interface_description = "143b-core02-Eth1/24"
+        interface_description = "142b-core02-Eth1/24"
         policy_group          = "default"
         sub_port              = false
       },
@@ -164,7 +164,7 @@ switch_profiles = {
       }
     ]
     pod_id        = 1
-    role          = "spine"
+    role          = "unspecified"
     serial_number = "FDO22220V7Y"
   }
 }

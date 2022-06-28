@@ -20,30 +20,6 @@ l3outs = {
         preferred_group_member = false
         qos_class              = "unspecified"
         subnets = [
-          {
-            aggregate = [
-              {
-                aggregate_export        = false
-                aggregate_shared_routes = false
-              }
-            ]
-            external_epg_classification = [
-              {
-                external_subnets_for_external_epg = true
-                shared_security_import_subnet     = false
-              }
-            ]
-            route_control = [
-              {
-                export_route_control_subnet = false
-                shared_route_control_subnet = false
-              }
-            ]
-            subnets = [
-              "0.0.0.0/1",
-              "128.0.0.0/1"
-            ]
-          }
         ]
         target_dscp = "unspecified"
         tenant      = "infra"

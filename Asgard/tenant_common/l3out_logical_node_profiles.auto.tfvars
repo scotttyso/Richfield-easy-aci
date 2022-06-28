@@ -32,7 +32,7 @@ l3out_logical_node_profiles = {
               }
             ]
             bgp_peer_prefix_policy = "default"
-            description            = "143b-core01"
+            description            = "142b-core01"
             ebgp_multihop_ttl      = 1
             local_as_number_config = "none"
             peer_address           = "10.92.2.3"
@@ -75,7 +75,7 @@ l3out_logical_node_profiles = {
               }
             ]
             bgp_peer_prefix_policy = "default"
-            description            = "143c-core02"
+            description            = "142c-core02"
             ebgp_multihop_ttl      = 1
             local_as_number_config = "none"
             peer_address           = "10.92.2.4"
@@ -98,7 +98,7 @@ l3out_logical_node_profiles = {
             weight_for_routes_from_neighbor = 0
           }
         ]
-        description               = "143-core01-02-vpc27-vl102"
+        description               = "142b-core01-02-l3out-vl102"
         encap_scope               = "local"
         encap_vlan                = 12
         interface_or_policy_group = "l3out"
@@ -168,7 +168,7 @@ l3out_logical_node_profiles = {
               }
             ]
             bgp_peer_prefix_policy = "default"
-            description            = "143b-core01"
+            description            = "142b-core01"
             ebgp_multihop_ttl      = 1
             local_as_number_config = "none"
             peer_address           = "10.92.3.3"
@@ -211,7 +211,7 @@ l3out_logical_node_profiles = {
               }
             ]
             bgp_peer_prefix_policy = "default"
-            description            = "143c-core02"
+            description            = "142c-core02"
             ebgp_multihop_ttl      = 1
             local_as_number_config = "none"
             peer_address           = "10.92.3.4"
@@ -234,7 +234,7 @@ l3out_logical_node_profiles = {
             weight_for_routes_from_neighbor = 0
           }
         ]
-        description               = "143-core01-02-vpc27-vl103"
+        description               = "142b-core01-02-l3out-vl103"
         encap_scope               = "local"
         encap_vlan                = 13
         interface_or_policy_group = "l3out"

@@ -8,7 +8,7 @@ virtual_networking = {
     controllers = [
       {
         datacenter             = "Wakanda"
-        dvs_version            = "unmanaged"
+        dvs_version            = "7.0"
         hostname               = "wakanda-vcenter.rich.ciscolabs.com"
         management_epg         = "ooband"
         management_epg_type    = "oob"

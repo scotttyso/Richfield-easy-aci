@@ -21,6 +21,8 @@ l3outs = {
         qos_class              = "unspecified"
         subnets = [
           {
+            aggregate_import            = false
+            import_route_control_subnet = false
             aggregate = [
               {
                 aggregate_export        = false
@@ -79,6 +81,8 @@ l3outs = {
         qos_class              = "unspecified"
         subnets = [
           {
+            aggregate_import            = false
+            import_route_control_subnet = false
             aggregate = [
               {
                 aggregate_export        = false

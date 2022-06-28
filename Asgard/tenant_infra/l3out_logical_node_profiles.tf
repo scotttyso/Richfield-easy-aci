@@ -6,12 +6,11 @@ ________________________________________________________________________________
 variable "l3out_logical_node_profiles" {
   default = {
     "default" = {
-      alias           = ""
-      annotation      = ""
-      annotations     = []
-      color_tag       = "yellow-green"
-      controller_type = "apic"
-      description     = ""
+      alias       = ""
+      annotation  = ""
+      annotations = []
+      color_tag   = "yellow-green"
+      description = ""
       interface_profiles = [
         {
           arp_policy = ""
@@ -177,12 +176,9 @@ variable "l3out_logical_node_profiles" {
           track_policy      = ""
         }
       ]
-      sites       = []
       target_dscp = "unspecified"
       /* If undefined the variable of local.first_tenant will be used for:
       policy_source_tenant = local.first_tenant
-      schema               = local.first_tenant
-      template             = local.first_tenant
       tenant               = local.first_tenant
       */
     }
@@ -191,56 +187,459 @@ variable "l3out_logical_node_profiles" {
     Key: Name of the L3Out Logical Node Profile.
     * alias: A changeable name for a given object. While the name of an object, once created, cannot be changed, the name_alias is a field that can be changed.
     * annotation: A search keyword or term that is assigned to the Object. Tags allow you to group multiple objects by descriptive names. You can assign the same tag name to multiple objects and you can assign one or more tag names to a single object.
-    * controller_type: What is the type of controller.  Options are:
-      - apic: For APIC Controllers
-      - ndo: For Nexus Dashboard Orchestrator
-    * description: Description to add to the Object.  The description can be up to 128 alphanumeric characters.
-    hsrp_interface_profiles - Group of Objects to add as an HSRP interface profile
-    * alias: (optional) — Name name_alias for object L3-out HSRP interface profile.
-    * annotation: (optional) — Annotation for object L3-out HSRP interface profile.
-    * description: (optional) — Description for object L3-out HSRP interface profile.
-    * groups - Map of group objects
-      - alias: (optional) — alias for L3out HSRP interface group object.
-      - annotation: (optional) — Annotation for L3out HSRP interface group object.
-      - description: (optional) — Description for L3out HSRP interface group object.
-      - group_id: (optional) — Group id for L3out HSRP interface group object.
-      - group_name: (optional) — Group name for L3out HSRP interface group object.
-      - group_type: (optional) — Group address-family type for L3out HSRP interface group object.  Options are:
-        * ipv4
-        * ipv6
-        Default value is ipv4.
-      - hsrp_group_policy: (optional) — Name of the HSRP Group Policy
-      - ip: (optional) — IP address for L3out HSRP interface group object.
-      - ip_obtain_mode: (optional) — IP obtain mode for L3out HSRP interface group object. Allowed values are:
-        * admin - Address is configured.
-        * auto - Auto configure IPv6 address.
-        * learn - Learn IP from HSRP Peer.
-        Default value is admin
-      - mac_address: (optional) — MAC address for L3out HSRP interface group object.
-      - name: (required) — Name of L3out HSRP interface group object.
-      - secondary_virtual_ips: (optional) — - List of secondary virtual IP's to assign to the group.
-    * hsrp_interface_policy: (optional) — Name of the HSRP Interface Policy.
-    * policy_source_tenant: (optional) — - Name of the tenant that contains the HSRP Interface and Group Policies.
-    * version: (optional) — Compatibility catalog version.
-      - v1
-      - v2
-    * nodes: map of Nodes to attach to the interface profile
-      - static_routes: Map of Static route attributes
-        * aggregate: (optional) — Aggregated Route for object l3out static route. Allowed values: true, false, default false
-        * alias: (optional) — Name name_alias for object l3out static route.
-        * annotation: (optional) — Annotation for object l3out static route.
-        * description: (optional) — Description for object l3out static route.
-        * preference: (optional) — The administrative preference value for this route. This value is useful for resolving routes advertised from different protocols. Range of allowed values is "1" to "255". Default value is "1".
-        * prefix: (required) — The static route IP address assigned to the outside network.
-        * route_control_bfd: (optional) — Route control for object l3out static route. Allowed values: "bfd", "unspecified". Default value is "unspecified".
-        * next_hop_addresses
-          - alias: (optional) — Name name_alias for object l3out static route next hop.
-          - annotation: (optional) — Annotation for object l3out static route next hop.
-          - description: (optional) — Description for object l3out static route next hop.
-          - next_hop_ip: (required) — The nexthop IP address for the static route to the outside network.
-          - next_hop_type: (optional) — Component type.
-          - Allowed values: "none", "prefix". Default value: "prefix".
-          - preference: (optional) — Administrative preference value for this route. Range: "1" to "255" Allowed values: "unspecified". Default value: "unspecified".
+    * annotations: (optional) — You can add arbitrary key:value pairs of metadata to an object as annotations (tagAnnotation). Annotations are provided for the user's custom purposes, such as descriptions, markers for personal scripting or API calls, or flags for monitoring tools or orchestration applications such as Cisco Multi-Site Orchestrator (MSO). Because APIC ignores these annotations and merely stores them with other object data, there are no format or content restrictions imposed by APIC.
+    * color_tag: (optional) — Specifies the color of a policy label.
+      - alice-blue
+      - antique-white
+      - aqua
+      - aquamarine
+      - azure
+      - beige
+      - bisque
+      - black
+      - blanched-almond
+      - blue
+      - blue-violet
+      - brown
+      - burlywood
+      - cadet-blue
+      - chartreuse
+      - chocolate
+      - coral
+      - cornflower-blue
+      - cornsilk
+      - crimson
+      - cyan
+      - dark-blue
+      - dark-cyan
+      - dark-goldenrod
+      - dark-gray
+      - dark-green
+      - dark-khaki
+      - dark-magenta
+      - dark-olive-green
+      - dark-orange
+      - dark-orchid
+      - dark-red
+      - dark-salmon
+      - dark-sea-green
+      - dark-slate-blue
+      - dark-slate-gray
+      - dark-turquoise
+      - dark-violet
+      - deep-pink
+      - deep-sky-blue
+      - dim-gray
+      - dodger-blue
+      - fire-brick
+      - floral-white
+      - forest-green
+      - fuchsia
+      - gainsboro
+      - ghost-white
+      - gold
+      - goldenrod
+      - gray
+      - green
+      - green-yellow
+      - honeydew
+      - hot-pink
+      - indian-red
+      - indigo
+      - ivory
+      - khaki
+      - lavender
+      - lavender-blush
+      - lawn-green
+      - lemon-chiffon
+      - light-blue
+      - light-coral
+      - light-cyan
+      - light-goldenrod-yellow
+      - light-gray
+      - light-green
+      - light-pink
+      - light-salmon
+      - light-sea-green
+      - light-sky-blue
+      - light-slate-gray
+      - light-steel-blue
+      - light-yellow
+      - lime
+      - lime-green
+      - linen
+      - magenta
+      - maroon
+      - medium-aquamarine
+      - medium-blue
+      - medium-orchid
+      - medium-purple
+      - medium-sea-green
+      - medium-slate-blue
+      - medium-spring-green
+      - medium-turquoise
+      - medium-violet-red
+      - midnight-blue
+      - mint-cream
+      - misty-rose
+      - moccasin
+      - navajo-white
+      - navy
+      - old-lace
+      - olive
+      - olive-drab
+      - orange
+      - orange-red
+      - orchid
+      - pale-goldenrod
+      - pale-green
+      - pale-turquoise
+      - pale-violet-red
+      - papaya-whip
+      - peachpuff
+      - peru
+      - pink
+      - plum
+      - powder-blue
+      - purple
+      - red
+      - rosy-brown
+      - royal-blue
+      - saddle-brown
+      - salmon
+      - sandy-brown
+      - sea-green
+      - seashell
+      - sienna
+      - silver
+      - sky-blue
+      - slate-blue
+      - slate-gray
+      - snow
+      - spring-green
+      - steel-blue
+      - tan
+      - teal
+      - thistle
+      - tomato
+      - turquoise
+      - violet
+      - wheat
+      - white
+      - white-smoke
+      - yellow
+      - yellow-green: (default)
+
+    * description: (optional) — Description to add to the Object.  The description can be up to 128 characters.
+    * interface_profiles = optional(list(object(
+      - arp_policy = optional(string)
+      - auto_state = optional(string)
+      - bgp_peers = optional(list(object(
+        * address_type_controls = optional(list(object(
+          - af_mcast = optional(bool)
+          - af_ucast = optional(bool)
+        * admin_state           = optional(string)
+        * allowed_self_as_count = optional(number)
+        * bgp_controls = optional(list(object(
+          - allow_self_as           = optional(bool)
+          - as_override             = optional(bool)
+          - disable_peer_as_check   = optional(bool)
+          - next_hop_self           = optional(bool)
+          - send_community          = optional(bool)
+          - send_domain_path        = optional(bool)
+          - send_extended_community = optional(bool)
+        * bgp_peer_prefix_policy = optional(string)
+        * description            = optional(string)
+        * ebgp_multihop_ttl      = optional(number)
+        * local_as_number        = optional(number)
+        * local_as_number_config = optional(string)
+        * password               = optional(number)
+        * peer_address           = string
+        * peer_asn               = number
+        * peer_controls = optional(list(object(
+          - bidirectional_forwarding_detection = optional(bool)
+          - disable_connected_check            = optional(bool)
+        * peer_level           = string
+        * policy_source_tenant = optional(string)
+        * private_as_control = optional(list(object(
+          - remove_all_private_as            = optional(bool)
+          - remove_private_as                = optional(bool)
+          - replace_private_as_with_local_as = optional(bool)
+        * route_control_profiles = optional(list(object(
+          - direction = string
+          - route_map = string
+        * weight_for_routes_from_neighbor = optional(number)
+      - color_tag: (optional) — Specifies the color of a policy label.
+        * alice-blue
+        * antique-white
+        * aqua
+        * aquamarine
+        * azure
+        * beige
+        * bisque
+        * black
+        * blanched-almond
+        * blue
+        * blue-violet
+        * brown
+        * burlywood
+        * cadet-blue
+        * chartreuse
+        * chocolate
+        * coral
+        * cornflower-blue
+        * cornsilk
+        * crimson
+        * cyan
+        * dark-blue
+        * dark-cyan
+        * dark-goldenrod
+        * dark-gray
+        * dark-green
+        * dark-khaki
+        * dark-magenta
+        * dark-olive-green
+        * dark-orange
+        * dark-orchid
+        * dark-red
+        * dark-salmon
+        * dark-sea-green
+        * dark-slate-blue
+        * dark-slate-gray
+        * dark-turquoise
+        * dark-violet
+        * deep-pink
+        * deep-sky-blue
+        * dim-gray
+        * dodger-blue
+        * fire-brick
+        * floral-white
+        * forest-green
+        * fuchsia
+        * gainsboro
+        * ghost-white
+        * gold
+        * goldenrod
+        * gray
+        * green
+        * green-yellow
+        * honeydew
+        * hot-pink
+        * indian-red
+        * indigo
+        * ivory
+        * khaki
+        * lavender
+        * lavender-blush
+        * lawn-green
+        * lemon-chiffon
+        * light-blue
+        * light-coral
+        * light-cyan
+        * light-goldenrod-yellow
+        * light-gray
+        * light-green
+        * light-pink
+        * light-salmon
+        * light-sea-green
+        * light-sky-blue
+        * light-slate-gray
+        * light-steel-blue
+        * light-yellow
+        * lime
+        * lime-green
+        * linen
+        * magenta
+        * maroon
+        * medium-aquamarine
+        * medium-blue
+        * medium-orchid
+        * medium-purple
+        * medium-sea-green
+        * medium-slate-blue
+        * medium-spring-green
+        * medium-turquoise
+        * medium-violet-red
+        * midnight-blue
+        * mint-cream
+        * misty-rose
+        * moccasin
+        * navajo-white
+        * navy
+        * old-lace
+        * olive
+        * olive-drab
+        * orange
+        * orange-red
+        * orchid
+        * pale-goldenrod
+        * pale-green
+        * pale-turquoise
+        * pale-violet-red
+        * papaya-whip
+        * peachpuff
+        * peru
+        * pink
+        * plum
+        * powder-blue
+        * purple
+        * red
+        * rosy-brown
+        * royal-blue
+        * saddle-brown
+        * salmon
+        * sandy-brown
+        * sea-green
+        * seashell
+        * sienna
+        * silver
+        * sky-blue
+        * slate-blue
+        * slate-gray
+        * snow
+        * spring-green
+        * steel-blue
+        * tan
+        * teal
+        * thistle
+        * tomato
+        * turquoise
+        * violet
+        * wheat
+        * white
+        * white-smoke
+        * yellow
+        * yellow-green: (default)
+      - custom_qos_policy           = optional(string)
+      - data_plane_policing_egress  = optional(string)
+      - data_plane_policing_ingress = optional(string)
+      - description                 = optional(string)
+      - encap_scope                 = optional(string)
+      - encap_vlan                  = optional(number)
+      - hsrp_interface_profile - Group of Objects to add as an HSRP interface profile
+        * alias: (optional) — Name name_alias for object L3-out HSRP interface profile.
+        * annotation: (optional) — Annotation for object L3-out HSRP interface profile.
+        * description: (optional) — Description for object L3-out HSRP interface profile.
+        * groups - Map of group objects
+          - alias: (optional) — alias for L3out HSRP interface group object.
+          - annotation: (optional) — Annotation for L3out HSRP interface group object.
+          - description: (optional) — Description for L3out HSRP interface group object.
+          - group_id: (optional) — Group id for L3out HSRP interface group object.
+          - group_name: (optional) — Group name for L3out HSRP interface group object.
+          - group_type: (optional) — Group address-family type for L3out HSRP interface group object.  Options are:
+            * ipv4: (default)
+            * ipv6
+          - hsrp_group_policy: (optional) — Name of the HSRP Group Policy
+          - ip: (optional) — IP address for L3out HSRP interface group object.
+          - ip_obtain_mode: (optional) — IP obtain mode for L3out HSRP interface group object. Allowed values are:
+            * admin - Address is configured.
+            * auto - Auto configure IPv6 address.
+            * learn - Learn IP from HSRP Peer.
+            Default value is admin
+          - mac_address: (optional) — MAC address for L3out HSRP interface group object.
+          - name: (required) — Name of L3out HSRP interface group object.
+          - secondary_virtual_ips: (optional) — - List of secondary virtual IP's to assign to the group.
+        * hsrp_interface_policy: (optional) — Name of the HSRP Interface Policy.
+        * policy_source_tenant: (optional) — - Name of the tenant that contains the HSRP Interface and Group Policies.
+        * version: (optional) — Compatibility catalog version.
+          - v1
+          - v2
+      - interface_or_policy_group = string
+      - interface_type            = optional(string)
+      - ipv6_dad                  = optional(string)
+      - link_local_address        = optional(string)
+      - mac_address               = optional(string)
+      - mode                      = optional(string)
+      - mtu                       = optional(string)
+      - name                      = string
+      - nd_policy                 = optional(string)
+      - netflow_monitor_policies = optional(list(object(
+        * filter_type    = optional(string)
+        * netflow_policy = string
+      - nodes: (required) — List of Nodes to attach to the interface profile.  One Node ID for routed and sub-interfaces.  Two Node ID's for VPC's.
+      - ospf_interface_profile = optional(list(object(
+        * description           = optional(string)
+        * authentication_type   = optional(string)
+        * name                  = string
+        * ospf_key              = optional(number)
+        * ospf_interface_policy = optional(string)
+        * policy_source_tenant  = optional(string)
+      - primary_preferred_address = optional(string)
+      - qos_class                 = optional(string)
+      - secondary_addresses       = optional(list(string))
+      - svi_addresses = optional(list(object(
+        * link_local_address        = optional(string)
+        * primary_preferred_address = string
+        * secondary_addresses       = optional(list(string))
+        * side                      = string
+    * l3out: (required) — The name of the L3Out to assign this Node Profile to.
+    * name: (required) — The name of the Node Profile.
+    * nodes: (required) — List of Nodes and their Router ID to assign to this Node Profile.
+      - node_id: (required) — Node ID of the Node to assign to the Node Profile.
+      - router_id: (required) — Router ID of the Node to assign to the Node Profile.
+      - use_router_id_as_loopback: (optional) — Should the Router ID be assigned as a Loopback on the Node.
+        * false: (default)
+        * true
+    * pod_id: (default: 1) — Identifier of the pod where the node is located.  Unless you are configuring Multi-Pod, this should always be 1.
+    * static_routes: Map of Static route attributes
+      - aggregate: (optional) — Aggregated Route for object l3out static route. Allowed values:
+        * true
+        * false: (default)
+      - description: (optional) — Description for object l3out static route.
+      - fallback_preference: (default: 1) — The administrative preference value for this route. This value is useful for resolving routes advertised from different protocols. Range of allowed values is "1-255".
+      - next_hop_addresses
+        * description: (optional) — Description for object l3out static route next hop.
+        * next_hop_address: (required) — The nexthop IP address for the static route to the outside network.
+        * next_hop_type: (optional) — Component type.  Allowed values:
+          - none
+          - prefix: (default)
+        * preference: (optional) — Administrative preference value for this route. Range: "1" to "255" Allowed values: "unspecified". Default value: "unspecified".
+      - prefix: (required) — The static route IP address assigned to the outside network.
+      - route_control_bfd: (optional) — Enable BFD for route_control.  Options are:
+        * false: (default)
+        * true
+    * target_dscp: (optional) — The target differentiated services code point (DSCP). The options are as follows:
+      - AF11 — low drop Priority
+      - AF12 — medium drop Priority
+      - AF13 — high drop Priority
+      - AF21 — low drop Immediate
+      - AF22 — medium drop Immediate
+      - AF23 — high drop Immediate
+      - AF31 — low drop Flash
+      - AF32 — medium drop Flash
+      - AF33 — high drop Flash
+      - AF41 — low drop—Flash Override
+      - AF42 — medium drop Flash Override
+      - AF43 — high drop Flash Override
+      - CS0 — class of service level 0
+      - CS1 — class of service level 1
+      - CS2 — class of service level 2
+      - CS3 — class of service level 3
+      - CS4 — class of service level 4
+      - CS5 — class of service level 5
+      - CS6 — class of service level 6
+      - CS7 — class of service level 7
+      - EF — Expedited Forwarding Critical
+      - VA — Voice Admit
+      - unspecified: (default)
+    * tenant: (default: local.tenant) — The Name of the Tenant to create the Node Profile within.
+    # Argument Reference
+    # addr: (optional) — Peer address for L3out floating SVI object. Default value: "0.0.0.0".
+    # annotation: (optional) — Annotation for L3out floating SVI object.
+    # autostate: (optional) — Autostate for L3out floating SVI object. Allowed values are "disabled" and "enabled". Default value is "disabled".
+    # description: (optional) — Description for L3out floating SVI object.
+    # encap: (required) — Port encapsulation for L3out floating SVI object.
+    # encap_scope: (optional) — Encap scope for L3out floating SVI object. Allowed values are "ctx" and "local". Default value is "local".
+    # if_inst_t: (optional) — Interface type for L3out floating SVI object. Allowed values are "ext-svi", "l3-port", "sub-interface" and "unspecified". Default value is "unspecified".
+    # ipv6_dad: (optional) — IPv6 dad for L3out floating SVI object. Allowed values are "disabled" and "enabled". Default value is "enabled".
+    # ll_addr: (optional) — Link local address for L3out floating SVI object. Default value: "::".
+    # logical_interface_profile_dn: (required) — Distinguished name of parent logical interface profile object.
+    # mac: (optional) — MAC address for L3out floating SVI object.
+    # mode: (optional) — BGP domain mode for L3out floating SVI object. Allowed values are "native", "regular" and "untagged". Default value is "regular".
+    # mtu: (optional) — Administrative MTU port on the aggregated interface for L3out floating SVI object. Range of allowed values is "576" to "9216". Default value is "inherit".
+    # node_dn: (required) — Distinguished name of the node for L3out floating SVI object.
+    # relation_l3ext_rs_dyn_path_att: (optional) — Relation to class infraDomP. Cardinality - N_TO_M. Type - Set of String.
+    # target_dscp: (optional) — Target DSCP for L3out floating SVI object. Allowed values are "AF11", "AF12", "AF13", "AF21", "AF22", "AF23", "AF31", "AF32", "AF33", "AF41", "AF42", "AF43", "CS0", "CS1", "CS2", "CS3", "CS4", "CS5", "CS6", "CS7", "EF", "VA" and "unspecified". Default value is "unspecified".
   EOT
   type = map(object(
     {
@@ -252,9 +651,8 @@ variable "l3out_logical_node_profiles" {
           value = string
         }
       )))
-      color_tag       = optional(string)
-      controller_type = optional(string)
-      description     = optional(string)
+      color_tag   = optional(string)
+      description = optional(string)
       interface_profiles = optional(list(object(
         {
           arp_policy = optional(string)
@@ -388,8 +786,8 @@ variable "l3out_logical_node_profiles" {
       name  = string
       nodes = list(object(
         {
-          node_id                   = optional(number)
-          router_id                 = optional(string)
+          node_id                   = number
+          router_id                 = string
           use_router_id_as_loopback = optional(bool)
         }
       ))
@@ -400,11 +798,12 @@ variable "l3out_logical_node_profiles" {
           fallback_preference = optional(number)
           next_hop_addresses = optional(list(object(
             {
-              description   = optional(string)
-              preference    = optional(number)
-              next_hop_type = optional(string)
-              ip_sla_policy = optional(string)
-              track_policy  = optional(string)
+              description      = optional(string)
+              ip_sla_policy    = optional(string)
+              next_hop_address = optional(string)
+              next_hop_type    = optional(string)
+              preference       = optional(number)
+              track_policy     = optional(string)
             }
           )))
           prefix            = string
@@ -412,9 +811,7 @@ variable "l3out_logical_node_profiles" {
           track_policy      = optional(string)
         }
       )))
-      sites       = optional(list(string))
       target_dscp = optional(string)
-      template    = optional(string)
       tenant      = optional(string)
     }
   ))

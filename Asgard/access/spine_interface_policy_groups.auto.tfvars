@@ -8,7 +8,7 @@ spine_interface_policy_groups = {
     attachable_entity_profile = "accessAep"
     cdp_interface_policy      = "cdpEnabled"
     link_flap_policy          = "default"
-    link_level_policy         = "inherit_Auto"
+    link_level_policy         = "inheritAuto"
     macsec_policy             = "default"
   }
 }

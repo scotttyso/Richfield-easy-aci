@@ -206,20 +206,32 @@ switch_profiles = {
         sub_port  = false
       },
       {
-        interface = "1/49"
-        sub_port  = false
+        interface             = "1/49"
+        interface_description = "142b-core01-Eth1/29"
+        policy_group          = "l3out"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/50"
-        sub_port  = false
+        interface             = "1/50"
+        interface_description = "142b-core02-Eth1/29"
+        policy_group          = "l3out"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/51"
-        sub_port  = false
+        interface             = "1/51"
+        interface_description = "tchalla-ucs-a-Eth1/53"
+        policy_group          = "vpc051"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/52"
-        sub_port  = false
+        interface             = "1/52"
+        interface_description = "tchalla-ucs-b-Eth1/53"
+        policy_group          = "vpc052"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
         interface = "1/53"
@@ -241,7 +253,7 @@ switch_profiles = {
     ]
     pod_id        = 1
     role          = "unspecified"
-    serial_number = "FDO22491344"
+    serial_number = "FDO25161HAF"
   }
   202 = {
     inband_addressing = [
@@ -445,20 +457,32 @@ switch_profiles = {
         sub_port  = false
       },
       {
-        interface = "1/49"
-        sub_port  = false
+        interface             = "1/49"
+        interface_description = "142b-core01-Eth1/30"
+        policy_group          = "l3out"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/50"
-        sub_port  = false
+        interface             = "1/50"
+        interface_description = "142b-core02-Eth1/30"
+        policy_group          = "l3out"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/51"
-        sub_port  = false
+        interface             = "1/51"
+        interface_description = "tchalla-ucs-a-Eth1/54"
+        policy_group          = "vpc051"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
-        interface = "1/52"
-        sub_port  = false
+        interface             = "1/52"
+        interface_description = "tchalla-ucs-b-Eth1/54"
+        policy_group          = "vpc052"
+        policy_group_type     = "bundle"
+        sub_port              = false
       },
       {
         interface = "1/53"
@@ -480,6 +504,6 @@ switch_profiles = {
     ]
     pod_id        = 1
     role          = "unspecified"
-    serial_number = "FDO22490PWN"
+    serial_number = "FDO25161HD1"
   }
 }

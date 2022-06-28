@@ -31,7 +31,8 @@ application_epgs = {
             mac_changes       = "reject"
           }
         ]
-        vlan_mode = "dynamic"
+        switch_provider = "VMware"
+        vlan_mode       = "dynamic"
       }
     ]
     epg_to_aaeps = [

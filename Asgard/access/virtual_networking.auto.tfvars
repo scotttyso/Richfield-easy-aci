@@ -8,7 +8,7 @@ virtual_networking = {
     controllers = [
       {
         datacenter             = "Asgard"
-        dvs_version            = "unmanaged"
+        dvs_version            = "7.0"
         hostname               = "asgard-vcenter.rich.ciscolabs.com"
         management_epg         = "ooband"
         management_epg_type    = "oob"

@@ -9,7 +9,7 @@ l3out_logical_node_profiles = {
     description = "Multi-Site Connectivity"
     interface_profiles = [
       {
-        description               = "143b-core01-Eth1/23"
+        description               = "142b-core01-Eth1/23"
         encap_scope               = "local"
         encap_vlan                = 4
         interface_or_policy_group = "eth1/29"
@@ -33,7 +33,7 @@ l3out_logical_node_profiles = {
         target_dscp               = "unspecified"
       },
       {
-        description               = "143c-core02-Eth1/23"
+        description               = "142c-core02-Eth1/23"
         encap_scope               = "local"
         encap_vlan                = 4
         interface_or_policy_group = "eth1/30"
@@ -75,7 +75,7 @@ l3out_logical_node_profiles = {
     description = "Multi-Site Connectivity"
     interface_profiles = [
       {
-        description               = "143b-core01-Eth1/24"
+        description               = "142b-core01-Eth1/24"
         encap_scope               = "local"
         encap_vlan                = 4
         interface_or_policy_group = "eth1/29"
@@ -99,7 +99,7 @@ l3out_logical_node_profiles = {
         target_dscp               = "unspecified"
       },
       {
-        description               = "143b-core01-Eth1/24"
+        description               = "142b-core01-Eth1/24"
         encap_scope               = "local"
         encap_vlan                = 4
         interface_or_policy_group = "eth1/30"

@@ -32,7 +32,7 @@ l3out_logical_node_profiles = {
               }
             ]
             bgp_peer_prefix_policy = "default"
-            description            = "143b-core01"
+            description            = "142b-core01"
             ebgp_multihop_ttl      = 1
             local_as_number_config = "none"
             peer_address           = "10.96.1.3"
@@ -75,7 +75,7 @@ l3out_logical_node_profiles = {
               }
             ]
             bgp_peer_prefix_policy = "default"
-            description            = "143c-core02"
+            description            = "142c-core02"
             ebgp_multihop_ttl      = 1
             local_as_number_config = "none"
             peer_address           = "10.96.1.4"
@@ -98,7 +98,7 @@ l3out_logical_node_profiles = {
             weight_for_routes_from_neighbor = 0
           }
         ]
-        description               = "143-core01-02-vpc29-vl201"
+        description               = "142b-core01-02-l3out-vl201"
         encap_scope               = "local"
         encap_vlan                = 21
         interface_or_policy_group = "l3out"

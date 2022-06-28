@@ -31,14 +31,15 @@ application_epgs = {
             mac_changes       = "reject"
           }
         ]
-        vlan_mode = "dynamic"
+        switch_provider = "VMware"
+        vlan_mode       = "dynamic"
       }
     ]
     epg_to_aaeps = [
       {
         aaep  = "trunkAep"
         mode  = "trunk"
-        vlans = [101]
+        vlans = [1101]
       }
     ]
     epg_type               = "standard"
@@ -80,14 +81,15 @@ application_epgs = {
             mac_changes       = "reject"
           }
         ]
-        vlan_mode = "dynamic"
+        switch_provider = "VMware"
+        vlan_mode       = "dynamic"
       }
     ]
     epg_to_aaeps = [
       {
         aaep  = "trunkAep"
         mode  = "trunk"
-        vlans = [102]
+        vlans = [1102]
       }
     ]
     epg_type               = "standard"
@@ -129,14 +131,15 @@ application_epgs = {
             mac_changes       = "reject"
           }
         ]
-        vlan_mode = "dynamic"
+        switch_provider = "VMware"
+        vlan_mode       = "dynamic"
       }
     ]
     epg_to_aaeps = [
       {
         aaep  = "trunkAep"
         mode  = "trunk"
-        vlans = [103]
+        vlans = [1103]
       }
     ]
     epg_type               = "standard"
@@ -159,9 +162,6 @@ application_epgs = {
     description = "Guest VM1"
     domains = [
       {
-        domain = "access"
-      },
-      {
         allow_micro_segmentation = false
         delimiter                = "|"
         deploy_immediacy         = "immediate"
@@ -178,14 +178,8 @@ application_epgs = {
             mac_changes       = "reject"
           }
         ]
-        vlan_mode = "dynamic"
-      }
-    ]
-    epg_to_aaeps = [
-      {
-        aaep  = "trunkAep"
-        mode  = "trunk"
-        vlans = [111]
+        switch_provider = "VMware"
+        vlan_mode       = "dynamic"
       }
     ]
     epg_type               = "standard"
@@ -194,6 +188,8 @@ application_epgs = {
     intra_epg_isolation    = "unenforced"
     label_match_criteria   = "AtleastOne"
     monitoring_policy      = "default"
+    physical_domains = [
+    ]
     policy_source_tenant   = "common"
     preferred_group_member = true
     qos_class              = "unspecified"
@@ -208,9 +204,6 @@ application_epgs = {
     description = "Guest VM2"
     domains = [
       {
-        domain = "access"
-      },
-      {
         allow_micro_segmentation = false
         delimiter                = "|"
         deploy_immediacy         = "immediate"
@@ -227,14 +220,8 @@ application_epgs = {
             mac_changes       = "reject"
           }
         ]
-        vlan_mode = "dynamic"
-      }
-    ]
-    epg_to_aaeps = [
-      {
-        aaep  = "trunkAep"
-        mode  = "trunk"
-        vlans = [112]
+        switch_provider = "VMware"
+        vlan_mode       = "dynamic"
       }
     ]
     epg_type               = "standard"
@@ -243,6 +230,8 @@ application_epgs = {
     intra_epg_isolation    = "unenforced"
     label_match_criteria   = "AtleastOne"
     monitoring_policy      = "default"
+    physical_domains = [
+    ]
     policy_source_tenant   = "common"
     preferred_group_member = true
     qos_class              = "unspecified"
