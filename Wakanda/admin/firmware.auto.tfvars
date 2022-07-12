@@ -31,6 +31,6 @@ firmware = {
     run_mode               = "pauseOnlyOnFailures"
     simulator              = false
     version_check_override = "untriggered"
-    version                = "5.2(3g)"
+    version                = "5.2(4e)"
   }
 }

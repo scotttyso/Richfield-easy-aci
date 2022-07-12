@@ -15,6 +15,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    dhcp_relay_labels = "[]"
     general = [
       {
         advertise_host_routes         = false

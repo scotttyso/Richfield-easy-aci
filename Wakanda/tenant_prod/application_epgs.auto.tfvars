@@ -39,7 +39,7 @@ application_epgs = {
       {
         aaep  = "trunkAep"
         mode  = "trunk"
-        vlans = [1101]
+        vlans = [101]
       }
     ]
     epg_type               = "standard"
@@ -89,7 +89,7 @@ application_epgs = {
       {
         aaep  = "trunkAep"
         mode  = "trunk"
-        vlans = [1102]
+        vlans = [102]
       }
     ]
     epg_type               = "standard"
@@ -139,7 +139,7 @@ application_epgs = {
       {
         aaep  = "trunkAep"
         mode  = "trunk"
-        vlans = [1103]
+        vlans = [103]
       }
     ]
     epg_type               = "standard"

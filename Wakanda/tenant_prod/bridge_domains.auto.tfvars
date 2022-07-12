@@ -15,6 +15,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
     general = [
       {
         advertise_host_routes         = false
@@ -89,6 +90,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
     general = [
       {
         advertise_host_routes         = false
@@ -163,6 +165,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
     general = [
       {
         advertise_host_routes         = false
@@ -237,6 +240,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
     general = [
       {
         advertise_host_routes         = false
@@ -311,6 +315,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
     general = [
       {
         advertise_host_routes         = false
