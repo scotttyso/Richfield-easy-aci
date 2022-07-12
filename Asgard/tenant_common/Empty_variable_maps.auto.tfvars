@@ -15,7 +15,6 @@ policies_bgp_route_summarization    = {}
 policies_bgp_timers                 = {}
 policies_bfd_interface              = {}
 policies_dhcp_option                = {}
-policies_dhcp_relay                 = {}
 policies_eigrp_interface            = {}
 policies_endpoint_retention         = {}
 policies_hsrp_interface             = {}
