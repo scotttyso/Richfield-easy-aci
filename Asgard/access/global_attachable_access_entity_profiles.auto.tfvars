@@ -13,8 +13,12 @@ global_attachable_access_entity_profiles = {
     physical_domains = [
       "access"
     ]
-    vmm_domains = [
-      "Asgard"
+  }
+  "infraAep" = {
+    description = "AEP for Infra Trunk"
+    infra_vlan  = true
+    physical_domains = [
+      "access"
     ]
   }
   "trunkAep" = {
@@ -23,12 +27,8 @@ global_attachable_access_entity_profiles = {
     physical_domains = [
       "access"
     ]
-  }
-  "infraAep" = {
-    description = "AEP for Infra Trunk"
-    infra_vlan  = true
-    physical_domains = [
-      "access"
+    vmm_domains = [
+      "Asgard"
     ]
   }
 }
