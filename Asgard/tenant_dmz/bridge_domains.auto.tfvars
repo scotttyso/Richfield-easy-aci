@@ -15,6 +15,7 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    controller_type = "apic"
     general = [
       {
         advertise_host_routes         = false
@@ -76,6 +77,5 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "dmz"
-    controller_type      = "apic"
   }
 }
