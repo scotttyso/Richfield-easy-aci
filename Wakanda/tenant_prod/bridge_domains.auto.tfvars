@@ -15,7 +15,16 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
-    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
+      }
+    ]
     general = [
       {
         advertise_host_routes         = false
@@ -77,7 +86,6 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "prod"
-    controller_type      = "apic"
   }
   "10.96.102.0" = {
     advanced_troubleshooting = [
@@ -90,7 +98,16 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
-    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
+      }
+    ]
     general = [
       {
         advertise_host_routes         = false
@@ -152,7 +169,6 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "prod"
-    controller_type      = "apic"
   }
   "10.96.103.0" = {
     advanced_troubleshooting = [
@@ -165,7 +181,16 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
-    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
+      }
+    ]
     general = [
       {
         advertise_host_routes         = false
@@ -227,7 +252,6 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "prod"
-    controller_type      = "apic"
   }
   "10.96.111.0" = {
     advanced_troubleshooting = [
@@ -240,7 +264,16 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
-    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
+      }
+    ]
     general = [
       {
         advertise_host_routes         = false
@@ -302,7 +335,6 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "prod"
-    controller_type      = "apic"
   }
   "10.96.112.0" = {
     advanced_troubleshooting = [
@@ -315,7 +347,16 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
-    dhcp_relay_labels = "[{'names': 'ad1,ad2', 'scope': 'infra', 'dhcp_option_policy': None}]"
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
+      }
+    ]
     general = [
       {
         advertise_host_routes         = false
@@ -377,6 +418,5 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "prod"
-    controller_type      = "apic"
   }
 }
