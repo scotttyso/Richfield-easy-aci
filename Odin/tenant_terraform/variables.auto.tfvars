@@ -2,10 +2,10 @@
 #
 # Global - Variables
 #____________________________________________________________
-annotation   = "orchestrator:terraform:easy-aci-v0.9.5"
+annotation   = "orchestrator:terraform:easy-aci-v1.2"
 apicHostname = "wakanda-apic01.rich.ciscolabs.com"
 apicUser     = "admin"
-apic_version = "5.2(3g)"
+apic_version = "5.2(4e)"
 ndoDomain    = "RICH"
 ndoHostname  = "odin-nd01.rich.ciscolabs.com"
 ndoUser      = "tyscott"
