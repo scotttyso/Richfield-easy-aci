@@ -15,6 +15,16 @@ bridge_domains = {
         optimize_wan_bandwidth                 = false
       }
     ]
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
+      }
+    ]
     general = [
       {
         advertise_host_routes         = false
@@ -76,7 +86,6 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "skunkworks"
-    controller_type      = "apic"
   }
   "10.239.21.0" = {
     advanced_troubleshooting = [
@@ -87,6 +96,16 @@ bridge_domains = {
         intersite_l2_stretch                   = false
         monitoring_policy                      = "default"
         optimize_wan_bandwidth                 = false
+      }
+    ]
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
       }
     ]
     general = [
@@ -150,7 +169,6 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "skunkworks"
-    controller_type      = "apic"
   }
   "10.239.22.0" = {
     advanced_troubleshooting = [
@@ -161,6 +179,16 @@ bridge_domains = {
         intersite_l2_stretch                   = false
         monitoring_policy                      = "default"
         optimize_wan_bandwidth                 = false
+      }
+    ]
+    controller_type = "apic"
+    dhcp_relay_labels = [
+      {
+        names = [
+          "ad1",
+          "ad2",
+        ]
+        scope = "infra"
       }
     ]
     general = [
@@ -224,6 +252,5 @@ bridge_domains = {
     ]
     policy_source_tenant = "common"
     tenant               = "skunkworks"
-    controller_type      = "apic"
   }
 }
