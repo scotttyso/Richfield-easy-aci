@@ -22,7 +22,7 @@ configuration_backups = {
         ]
         remote_path = "/tmp"
         remote_port = 22
-        username    = "backup_user"
+        username    = "tyscott"
       }
     ]
     recurring_window = [
