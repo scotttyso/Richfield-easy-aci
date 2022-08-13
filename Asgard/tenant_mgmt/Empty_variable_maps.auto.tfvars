@@ -25,4 +25,3 @@ route_map_match_rules               = {}
 route_map_set_rules                 = {}
 route_maps_for_route_control        = {}
 schemas                             = {}
-# Empty

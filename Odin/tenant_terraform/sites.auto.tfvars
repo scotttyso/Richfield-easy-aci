@@ -4,12 +4,16 @@
 #______________________________________________
 
 sites = {
-  "" = {
-    site  = "Asgard"
-    users = "admin,tyscott"
+  "Asgard" = {
+    users = [
+      "admin",
+      "tyscott"
+    ]
   }
-  "" = {
-    site  = "Wakanda"
-    users = "admin,tyscott"
+  "Wakanda" = {
+    users = [
+      "admin",
+      "tyscott"
+    ]
   }
 }
