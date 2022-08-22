@@ -1588,6 +1588,18 @@ locals {
     }
   }
 
+  ndo_sites = flatten([
+    for s in local.tenants : [
+      for k, v in s.sites : [v.site]
+    ]
+  ])
+
+  ndo_users = flatten([
+    for s in local.tenants : [
+      s.users
+    ]
+  ])
+
   tenants_annotations_loop = flatten([
     for key, value in local.tenants : [
       for k, v in value.annotations : {

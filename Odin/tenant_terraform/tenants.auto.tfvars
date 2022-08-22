@@ -5,22 +5,15 @@
 
 tenants = {
   "terraform" = {
+    controller_type   = "ndo"
     description       = "Terraform Test"
     monitoring_policy = "default"
     sites = [
       {
-        tenant = "terraform"
-        users = [
-          "admin",
-          "tyscott"
-        ]
+        site = "Asgard"
       },
       {
-        tenant = "terraform"
-        users = [
-          "admin",
-          "tyscott"
-        ]
+        site = "Wakanda"
       }
     ]
     users = [

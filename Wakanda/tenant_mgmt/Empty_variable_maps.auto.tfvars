@@ -4,8 +4,6 @@
 #______________________________________________
 
 application_profiles                = {}
-ndo_sites                           = []
-ndo_users                           = []
 policies_bgp_address_family_context = {}
 policies_bgp_best_path              = {}
 policies_bgp_peer_prefix            = {}
