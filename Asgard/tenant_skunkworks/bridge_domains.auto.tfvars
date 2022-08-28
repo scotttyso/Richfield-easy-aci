@@ -50,16 +50,14 @@ bridge_domains = {
       {
         associated_l3outs = [
           {
-            l3out  = "asgard-prod"
+            l3out = [
+              "asgard-prod"
+            ]
             tenant = "common"
           }
         ]
-        disable_ip_data_plane_learning_for_pbr = false
-        ep_move_detection_mode                 = false
-        intersite_bum_traffic_allow            = false
-        intersite_l2_stretch                   = false
-        nd_policy                              = "default"
-        optimize_wan_bandwidth                 = false
+        ep_move_detection_mode = false
+        nd_policy              = "default"
         subnets = {
           "10.239.10.1/24" = {
             ip_data_plane_learning       = "enabled"
@@ -133,16 +131,14 @@ bridge_domains = {
       {
         associated_l3outs = [
           {
-            l3out  = "asgard-prod"
+            l3out = [
+              "asgard-prod"
+            ]
             tenant = "common"
           }
         ]
-        disable_ip_data_plane_learning_for_pbr = false
-        ep_move_detection_mode                 = false
-        intersite_bum_traffic_allow            = false
-        intersite_l2_stretch                   = false
-        nd_policy                              = "default"
-        optimize_wan_bandwidth                 = false
+        ep_move_detection_mode = false
+        nd_policy              = "default"
         subnets = {
           "10.239.21.1/24" = {
             ip_data_plane_learning       = "enabled"
@@ -216,16 +212,14 @@ bridge_domains = {
       {
         associated_l3outs = [
           {
-            l3out  = "asgard-prod"
+            l3out = [
+              "asgard-prod"
+            ]
             tenant = "common"
           }
         ]
-        disable_ip_data_plane_learning_for_pbr = false
-        ep_move_detection_mode                 = false
-        intersite_bum_traffic_allow            = false
-        intersite_l2_stretch                   = false
-        nd_policy                              = "default"
-        optimize_wan_bandwidth                 = false
+        ep_move_detection_mode = false
+        nd_policy              = "default"
         subnets = {
           "10.239.22.1/24" = {
             ip_data_plane_learning       = "enabled"

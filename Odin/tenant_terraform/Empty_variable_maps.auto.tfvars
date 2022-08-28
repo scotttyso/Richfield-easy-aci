@@ -5,8 +5,6 @@
 
 apics_inband_mgmt_addresses         = {}
 application_epgs                    = {}
-application_profiles                = {}
-bridge_domains                      = {}
 contracts                           = {}
 filters                             = {}
 l3out_logical_node_profiles         = {}
@@ -29,5 +27,4 @@ policies_ospf_timers                = {}
 route_map_match_rules               = {}
 route_map_set_rules                 = {}
 route_maps_for_route_control        = {}
-schemas                             = {}
 vrfs                                = {}

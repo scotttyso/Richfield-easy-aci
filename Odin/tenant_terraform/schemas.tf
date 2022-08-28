@@ -3,7 +3,7 @@ variable "schemas" {
     "default" = { # By default the default name will be local.first_tenant
       /* If undefined the variable of local.first_tenant will be used for:
       primary_template = local.first_tenant
-      tenant           = local.first_tenant
+      schema_tenant    = local.first_tenant
       */
       templates = [
         {
@@ -18,22 +18,32 @@ variable "schemas" {
   type = map(object(
     {
       primary_template = optional(string)
-      tenant           = optional(string)
-      templates = list(object(
+      schema_tenant    = optional(string)
+      templates = optional(list(object(
         {
           name  = optional(string)
           sites = list(string)
         }
-      ))
+      )))
     }
   ))
 }
+data "mso_schema" "schemas" {
+  provider = mso
+  depends_on = [
+    mso_schema.schemas
+  ]
+  for_each = local.schemas
+  name     = each.key
+
+}
+
 resource "mso_schema" "schemas" {
   provider = mso
   depends_on = [
     mso_tenant.tenants
   ]
-  for_each      = local.schemas
+  for_each      = { for k, v in local.schemas : k => v if v.tenant == local.first_tenant }
   name          = each.key
   tenant_id     = mso_tenant.tenants[each.value.tenant].id
   template_name = each.value.primary_template
@@ -60,6 +70,10 @@ resource "mso_schema_site" "sites" {
   schema_id     = mso_schema.schemas[each.value.schema].id
   site_id       = data.mso_site.ndo_sites[each.value.site].id
   template_name = each.value.name
+}
+
+output "templates" {
+  value = local.schema_templates
 }
 
 output "schemas" {

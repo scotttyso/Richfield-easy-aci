@@ -105,15 +105,15 @@ resource "mso_schema_template_anp" "application_profiles" {
   template     = each.value.template
 }
 
-resource "mso_schema_site_anp" "application_profiles" {
-  provider = mso
-  depends_on = [
-    mso_schema.schemas,
-    mso_schema_template.templates
-  ]
-  for_each      = { for k, v in local.application_profiles : k => v if v.controller_type == "ndo" && v.sites != [] }
-  anp_name      = each.key
-  schema_id     = mso_schema.schemas[each.value.schema].id
-  site_id       = data.mso_site.ndo_sites[each.value.site].id
-  template_name = each.value.template
-}
+# resource "mso_schema_site_anp" "application_profiles" {
+#   provider = mso
+#   depends_on = [
+#     mso_schema.schemas,
+#     mso_schema_template.templates
+#   ]
+#   for_each      = { for k, v in local.application_profile_sites : k => v if v.controller_type == "ndo" }
+#   anp_name      = each.value.application_profile
+#   schema_id     = mso_schema.schemas[each.value.schema].id
+#   site_id       = data.mso_site.ndo_sites[each.value.site].id
+#   template_name = each.value.template
+# }

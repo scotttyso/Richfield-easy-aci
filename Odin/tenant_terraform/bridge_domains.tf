@@ -53,6 +53,8 @@ variable "bridge_domains" {
           type                          = "regular"
           vrf                           = "default"
           /* If undefined the Bridge Domain Tenant will be used
+          vrf_schema                    = bd.tenant
+          vrf_template                  = bd.tenant
           vrf_tenant                    = bd.tenant
           */
         }
@@ -61,7 +63,7 @@ variable "bridge_domains" {
         {
           associated_l3outs = [
             {
-              l3out         = "default"
+              l3out         = ["default"]
               route_profile = "" # Only one L3out can have a route_profile associated to it for the BD
               /* If undefined the Bridge Domain Tenant will be used
               tenant        = bd.tenant
@@ -194,10 +196,12 @@ variable "bridge_domains" {
         * fc
         * regular: (default)
       - vrf: (default: default) — Name of the VRF to Assign to the Bridge Domain.
-      - vrf_tenant                    = "local.first_tenant"
+      - vrf_schema: (optional) — local.first_tenant will be used if this is not defined.  This is an NDO Specific Attribute.
+      - vrf_template: (optional) — local.first_tenant will be used if this is not defined.  This is an NDO Specific Attribute.
+      - vrf_tenant: (optional) — local.first_tenant will be used if this is not defined
     * l3_configurations: (optional) — Map of Layer 3 Configuration Parameters for the Bridge Domain.
       - associated_l3outs: (optional) — List of L3Outs to Associate to the Bridge Domain.
-        * l3out: (optional) — Name of the L3Out to Associate.
+        * l3out: (optional) — Names of the L3Outs to Associate. One L3Out with APIC, One per site for Nexus Dashboard Orchestrator
         * route_profile: (optional) — Name of a Route Profile to associate to the L3Out.
           - **Note: Only one L3out can have a route_profile associated to it for the BD
         * tenant: (default: bd.tenant) —  The Name of the tenant for the L3Out.  If Undefined the Bridge Domain tenant will be utilized.
@@ -299,6 +303,8 @@ variable "bridge_domains" {
           pimv6                         = optional(bool)
           type                          = optional(string)
           vrf                           = optional(string)
+          vrf_schema                    = optional(string)
+          vrf_template                  = optional(string)
           vrf_tenant                    = optional(string)
         }
       ))
@@ -306,7 +312,7 @@ variable "bridge_domains" {
         {
           associated_l3outs = optional(list(object(
             {
-              l3out         = string
+              l3out         = list(string)
               route_profile = optional(string)
               tenant        = optional(string)
             }
@@ -393,11 +399,11 @@ resource "aci_bridge_domain" "bridge_domains" {
   mac                 = each.value.l3_configurations[0].custom_mac_address
   # class: l3extOut
   relation_fv_rs_bd_to_out = length(each.value.l3_configurations[0].associated_l3outs
-  ) > 0 ? [for k, v in each.value.l3_configurations[0].associated_l3outs : "uni/tn-${v.tenant}/out-${v.l3out}"] : []
+  ) > 0 ? [for k, v in each.value.l3_configurations[0].associated_l3outs : "uni/tn-${v.tenant}/out-${v.l3out[0]}"] : []
   # class: rtctrlProfile
   relation_fv_rs_bd_to_profile = join(",", [
     for k, v in each.value.l3_configurations[0
-    ].associated_l3outs : "uni/tn-${v.tenant}/out-${v.l3out}/prof-${v.route_profile}" if v.route_profile != ""
+    ].associated_l3outs : "uni/tn-${v.tenant}/out-${v.l3out[0]}/prof-${v.route_profile}" if v.route_profile != ""
   ])
   # class: monEPGPol
   # relation_fv_rs_bd_to_nd_p = length(
@@ -451,8 +457,8 @@ resource "aci_bd_dhcp_label" "bridge_domain_dhcp_relay_labels" {
     aci_bridge_domain.bridge_domains,
   ]
   for_each         = { for k, v in local.bridge_domain_dhcp_relay_labels : k => v if v.controller_type == "apic" }
-  bridge_domain_dn = "uni/tn-${each.value.tenant}/BD-${each.value.bridge_domain}"
   annotation       = each.value.annotation != "" ? each.value.annotation : var.annotation
+  bridge_domain_dn = "uni/tn-${each.value.tenant}/BD-${each.value.bridge_domain}"
   name             = each.value.name
   owner            = each.value.scope
   relation_dhcp_rs_dhcp_option_pol = length(compact([each.value.dhcp_option_policy])
@@ -538,7 +544,7 @@ resource "mso_schema_template_bd" "bridge_domains" {
     mso_schema_template.templates
   ]
   for_each     = { for k, v in local.bridge_domains : k => v if v.controller_type == "ndo" }
-  arp_flooding = each.value.arp_flooding
+  arp_flooding = each.value.general[0].arp_flooding
   # dynamic "dhcp_policy" {
   #   for_each = each.value.dhcp_relay_policy
   #   content {
@@ -550,28 +556,32 @@ resource "mso_schema_template_bd" "bridge_domains" {
   # }
   display_name                    = each.key
   name                            = each.key
-  intersite_bum_traffic           = each.value.intersite_bum_traffic_allow
-  ipv6_unknown_multicast_flooding = each.value.ipv6_l3_unknown_multicast
-  multi_destination_flooding      = each.value.multi_destination_flooding
-  layer2_unknown_unicast          = each.value.l2_unknown_unicast
-  layer2_stretch                  = each.value.intersite_l2_stretch
-  layer3_multicast                = each.value.pim
-  optimize_wan_bandwidth          = each.value.optimize_wan_bandwidth
-  schema_id                       = mso_schema.schemas[each.value.schema].id
-  template_name                   = each.value.template
-  unknown_multicast_flooding      = each.value.unknown_multicast_flooding
-  unicast_routing                 = each.value.unicast_routing
-  virtual_mac_address             = each.value.virtual_mac_address
-  vrf_name                        = each.value.vrf
-  vrf_schema_id = each.value.vrf != "" && length(compact(
-    [each.value.vrf_schema])
-    ) > 0 ? mso_schema.schemas[each.value.vrf_schema].id : length(compact(
-    [each.value.vrf])
-  ) > 0 ? mso_schema.schemas[each.value.schema].id : ""
-  vrf_template_name = each.value.vrf != "" && length(compact(
-    [each.value.vrf_template])
-    ) > 0 ? each.value.vrf_template : length(compact(
-    [each.value.vrf])
+  intersite_bum_traffic           = each.value.advanced_troubleshooting[0].intersite_bum_traffic_allow
+  ipv6_unknown_multicast_flooding = each.value.general[0].ipv6_l3_unknown_multicast
+  multi_destination_flooding = length(regexall(
+    each.value.general[0].multi_destination_flooding, "bd-flood")
+    ) > 0 ? "flood_in_bd" : length(regexall(
+    each.value.general[0].multi_destination_flooding, "encap-flood")
+  ) > 0 ? "flood_in_encap" : "drop"
+  layer2_unknown_unicast     = each.value.general[0].l2_unknown_unicast
+  layer2_stretch             = each.value.advanced_troubleshooting[0].intersite_l2_stretch
+  layer3_multicast           = each.value.general[0].pim
+  optimize_wan_bandwidth     = each.value.advanced_troubleshooting[0].optimize_wan_bandwidth
+  schema_id                  = mso_schema.schemas[each.value.schema].id
+  template_name              = each.value.template
+  unknown_multicast_flooding = each.value.general[0].l3_unknown_multicast_flooding
+  unicast_routing            = each.value.l3_configurations[0].unicast_routing
+  virtual_mac_address        = each.value.l3_configurations[0].virtual_mac_address
+  vrf_name                   = each.value.general[0].vrf
+  vrf_schema_id = each.value.general[0].vrf != "" && length(compact(
+    [each.value.general[0].vrf_schema])
+    ) > 0 ? data.mso_schema.schemas[each.value.general[0].vrf_schema].id : length(compact(
+    [each.value.general[0].vrf])
+  ) > 0 ? data.mso_schema.schemas[each.value.schema].id : ""
+  vrf_template_name = each.value.general[0].vrf != "" && length(compact(
+    [each.value.general[0].vrf_template])
+    ) > 0 ? each.value.general[0].vrf_template : length(compact(
+    [each.value.general[0].vrf])
   ) > 0 ? each.value.template : ""
 }
 
@@ -581,12 +591,26 @@ resource "mso_schema_site_bd" "bridge_domains" {
     mso_schema.schemas,
     mso_schema_template.templates
   ]
-  for_each      = { for k, v in local.bridge_domains : k => v if v.controller_type == "ndo" && v.sites != [] }
-  schema_id     = mso_schema.schemas[each.value.schema].id
-  bd_name       = each.key
-  template_name = each.value.template
-  site_id       = data.mso_site.ndo_sites[each.value.site].id
+  for_each      = { for k, v in local.bridge_domain_sites : k => v if v.controller_type == "ndo" }
+  bd_name       = each.value.bridge_domain
   host_route    = each.value.advertise_host_routes
+  schema_id     = mso_schema.schemas[each.value.schema].id
+  site_id       = data.mso_site.ndo_sites[each.value.site].id
+  template_name = each.value.template
+}
+
+resource "mso_schema_site_bd_l3out" "bridge_domain_l3outs" {
+  provider = mso
+  depends_on = [
+    mso_schema.schemas,
+    mso_schema_template.templates
+  ]
+  for_each      = { for k, v in local.bridge_domain_sites : k => v if v.controller_type == "ndo" }
+  bd_name       = each.value.bridge_domain
+  l3out_name    = each.value.l3out
+  schema_id     = mso_schema.schemas[each.value.schema].id
+  site_id       = data.mso_site.ndo_sites[each.value.site].id
+  template_name = each.value.template
 }
 
 resource "mso_schema_template_bd_subnet" "bridge_domain_subnets" {
@@ -598,12 +622,12 @@ resource "mso_schema_template_bd_subnet" "bridge_domain_subnets" {
   bd_name            = each.value.bridge_domain
   description        = each.value.description
   ip                 = each.value.gateway_ip
-  no_default_gateway = each.value.subnet_control["no_default_svi_gateway"]
+  no_default_gateway = each.value.subnet_control[0]["no_default_svi_gateway"]
   schema_id          = mso_schema.schemas[each.value.schema].id
-  scope              = each.value.scope["advertise_externally"] == true ? "public" : "private"
+  scope              = each.value.scope[0]["advertise_externally"] == true ? "public" : "private"
   template_name      = each.value.template
-  shared             = each.value.scope["shared_between_vrfs"]
-  querier            = each.value.subnet_control["querier_ip"]
+  shared             = each.value.scope[0]["shared_between_vrfs"]
+  querier            = each.value.subnet_control[0]["querier_ip"]
 }
 
 

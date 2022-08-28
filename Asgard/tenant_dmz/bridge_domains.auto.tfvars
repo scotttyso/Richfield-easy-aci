@@ -41,16 +41,14 @@ bridge_domains = {
       {
         associated_l3outs = [
           {
-            l3out  = "asgard-dmz"
+            l3out = [
+              "asgard-dmz"
+            ]
             tenant = "common"
           }
         ]
-        disable_ip_data_plane_learning_for_pbr = false
-        ep_move_detection_mode                 = false
-        intersite_bum_traffic_allow            = false
-        intersite_l2_stretch                   = false
-        nd_policy                              = "default"
-        optimize_wan_bandwidth                 = false
+        ep_move_detection_mode = false
+        nd_policy              = "default"
         subnets = {
           "10.92.201.1/24" = {
             ip_data_plane_learning       = "enabled"
