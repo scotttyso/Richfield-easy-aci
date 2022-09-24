@@ -39,7 +39,7 @@ locals {
   ])
 
   application_profile_sites = {
-    for k, v in local.application_sites : "${v.site}_${v.application_profile}" => v
+    for k, v in local.application_sites : "${v.application_profile}_${v.site}" => v
   }
 
 
@@ -357,7 +357,7 @@ locals {
   bridge_domain_loop = flatten([
     for k, v in local.bridge_domains : [
       for s in v.site_length : {
-        advertise_host_routes = s == 0 ? false : v.general[0].advertise_host_routes
+        advertise_host_routes = s == 1 ? false : v.general[0].advertise_host_routes
         bridge_domain         = k
         controller_type       = v.controller_type
         l3out                 = element(v.l3_configurations[0].associated_l3outs[0].l3out, s)
@@ -1562,7 +1562,7 @@ locals {
     for k, v in var.schemas : k => {
       primary_template = v.primary_template != null ? v.primary_template : local.first_tenant
       tenant           = v.schema_tenant != null ? v.schema_tenant : local.first_tenant
-      templates        = v.templates != null ? v.templates : []
+      templates        = v.templates
     }
   }
 

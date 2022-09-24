@@ -606,7 +606,7 @@ resource "mso_schema_site_bd_l3out" "bridge_domain_l3outs" {
     mso_schema_template.templates
   ]
   for_each      = { for k, v in local.bridge_domain_sites : k => v if v.controller_type == "ndo" }
-  bd_name       = each.value.bridge_domain
+  bd_name       = each.key
   l3out_name    = each.value.l3out
   schema_id     = mso_schema.schemas[each.value.schema].id
   site_id       = data.mso_site.ndo_sites[each.value.site].id
