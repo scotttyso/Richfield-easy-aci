@@ -34,6 +34,8 @@ bridge_domains = {
         pimv6                         = false
         type                          = "regular"
         vrf                           = "dmz"
+        vrf_schema                    = "common"
+        vrf_template                  = "common"
         vrf_tenant                    = "common"
       }
     ]

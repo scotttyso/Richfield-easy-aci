@@ -5,11 +5,11 @@
 
 schemas = {
   "common" = {
-    schema_tenant = "common"
+    template_tenant = "common"
   }
   "terraform" = {
-    description   = "Terraform Schema"
-    schema_tenant = "terraform"
+    description     = "Terraform Schema"
+    template_tenant = "terraform"
     templates = [
       {
         name = "terraform"
@@ -17,6 +17,7 @@ schemas = {
           "Asgard",
           "Wakanda"
         ]
+        tenant = "terraform"
       }
     ]
   }

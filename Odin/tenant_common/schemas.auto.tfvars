@@ -5,23 +5,26 @@
 
 schemas = {
   "common" = {
-    description   = "common Schema"
-    schema_tenant = "common"
+    description     = "common Schema"
+    template_tenant = "common"
     templates = [
       {
-        name = "stretched"
+        name = "common"
         sites = [
           "Asgard",
           "Wakanda"
         ]
-        name = "Asgard"
+        tenant = "common"
+        name   = "Asgard"
         sites = [
           "Asgard"
         ]
-        name = "Wakanda"
+        tenant = "common"
+        name   = "Wakanda"
         sites = [
           "Wakanda"
         ]
+        tenant = "common"
       }
     ]
   }

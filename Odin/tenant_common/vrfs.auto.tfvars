@@ -58,9 +58,12 @@ vrfs = {
     policy_source_tenant                  = "common"
     preferred_group                       = true
     schema                                = "common"
-    sites                                 = "Asgard,Wakanda"
-    template                              = "stretched"
-    tenant                                = "common"
-    vrf_policy                            = "recommended"
+    sites = [
+      "Asgard",
+      "Wakanda",
+    ]
+    template   = "common"
+    tenant     = "common"
+    vrf_policy = "recommended"
   }
 }
