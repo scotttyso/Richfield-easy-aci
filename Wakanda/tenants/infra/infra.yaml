@@ -1,0 +1,57 @@
+---
+#====================================
+#   Tenants -> infra - Variables
+#====================================
+tenants:
+  infra:
+    description: Built-In infra tenant
+    monitoring_policy: default
+    name: infra
+    networking:
+      l3outs:
+      - description: Multi-Site L3Out
+        enable_bgp: true
+        external_epgs:
+        - description: Multi-Site
+          flood_on_encapsulation: disabled
+          intra_epg_isolation: unenforced
+          label_match_criteria: AtleastOne
+          name: intersiteInstP
+          preferred_group_member: false
+          qos_class: unspecified
+          target_dscp: unspecified
+        l3_domain: l3out
+        logical_node_profiles:
+        - color_tag: yellow-green
+          description: Multi-Site Connectivity
+          logical_interface_profiles: []
+          name: wakanda-spine101
+          nodes:
+          - node_id: 101
+            router_id: 10.96.4.101
+          pod_id: 1
+          target_dscp: unspecified
+        - color_tag: yellow-green
+          description: Multi-Site Connectivity
+          logical_interface_profiles: []
+          name: wakanda-spine102
+          nodes:
+          - node_id: 102
+            router_id: 10.96.4.102
+          pod_id: 1
+          target_dscp: unspecified
+        name: intersite
+        pim: false
+        pimv6: false
+        route_control_enforcement:
+          export: true
+          import: false
+        target_dscp: unspecified
+        vrf: overlay-1
+      vrfs:
+      - description: Built-In infra VRF
+        epg_esg_collection_for_vrfs:
+          contracts: []
+          label_match_criteria: AtleastOne
+        layer3_multicast: true
+        name: overlay-1

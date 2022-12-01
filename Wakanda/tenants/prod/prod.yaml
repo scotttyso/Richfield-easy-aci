@@ -1,0 +1,61 @@
+---
+#===================================
+#   Tenants -> prod - Variables
+#===================================
+tenants:
+  prod:
+    application_profiles:
+    - monitoring_policy: default
+      name: nets
+      tenant: prod
+    description: prod tenant
+    monitoring_policy: default
+    name: prod
+    networking:
+      bridge_domains:
+      - application_epg:
+          application_profile: nets
+          template: wakanda
+        application_profile: nets
+        description: Management
+        epg_to_aaep_vlans:
+        - 101
+        name: 10.96.101.0
+        subnets:
+        - gateway_ip: 10.96.101.1/24
+          template: advertise_external
+        template: prod_optimize
+      - application_epg:
+          application_profile: nets
+          template: wakanda
+        application_profile: nets
+        description: Migration
+        epg_to_aaep_vlans:
+        - 102
+        name: 10.96.102.0
+        subnets:
+        - gateway_ip: 10.96.102.1/24
+          template: advertise_external
+        template: prod_optimize
+      - application_epg:
+          application_profile: nets
+          template: wakanda
+        application_profile: nets
+        description: Storage
+        epg_to_aaep_vlans:
+        - 103
+        name: 10.96.103.0
+        subnets:
+        - gateway_ip: 10.96.103.1/24
+          template: advertise_external
+        template: prod_optimize
+      - application_epg:
+          application_profile: nets
+          template: wakanda
+        application_profile: nets
+        description: Server 1
+        name: 10.96.104.0
+        subnets:
+        - gateway_ip: 10.96.104.1/24
+          template: advertise_external
+        template: prod_optimize

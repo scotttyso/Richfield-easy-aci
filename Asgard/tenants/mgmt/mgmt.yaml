@@ -1,0 +1,444 @@
+---
+#===================================
+#   Tenants -> mgmt - Variables
+#===================================
+tenants:
+  mgmt:
+    application_profiles:
+    - application_epgs:
+      - bridge_domain: inb
+        contracts:
+        - contract_type: consumed
+          name: inband_out
+          qos_class: unspecified
+        - contract_type: provided
+          name: inband_in
+          qos_class: unspecified
+        description: Inband Mgmt EPG
+        monitoring_policy: default
+        name: inband
+        template: inband
+        vlans:
+        - 100
+      - contracts:
+        - contract_type: provided
+          name: ooband_in
+          qos_class: unspecified
+        description: Ooband Mgmt EPG
+        monitoring_policy: default
+        name: ooband
+        template: ooband
+      monitoring_policy: default
+      name: inb
+      tenant: mgmt
+    contracts:
+      contracts:
+      - contract_type: standard
+        description: Mgmt Inbound Traffic
+        name: inband_in
+        qos_class: unspecified
+        scope: global
+        subjects:
+        - action: permit
+          apply_both_directions: false
+          contract_type: standard
+          directives:
+            enable_policy_compression: false
+            log: false
+          filters:
+          - mgmt_in
+          label_match_criteria: AtleastOne
+          name: inband_in
+          qos_class: unspecified
+          target_dscp: unspecified
+        target_dscp: unspecified
+      - contract_type: standard
+        description: Mgmt Outbound Traffic
+        name: inband_out
+        qos_class: unspecified
+        scope: global
+        subjects:
+        - action: permit
+          apply_both_directions: false
+          contract_type: standard
+          directives:
+            enable_policy_compression: false
+            log: false
+          filters:
+          - mgmt_out
+          label_match_criteria: AtleastOne
+          name: inband_out
+          qos_class: unspecified
+          target_dscp: unspecified
+        target_dscp: unspecified
+      - contract_type: oob
+        description: Out-of-Band Inbound Traffic
+        name: ooband_in
+        qos_class: unspecified
+        scope: global
+        subjects:
+        - action: permit
+          apply_both_directions: false
+          contract_type: oob
+          directives:
+            enable_policy_compression: false
+            log: false
+          filters:
+          - mgmt_in
+          label_match_criteria: AtleastOne
+          name: ooband_in
+          qos_class: unspecified
+          target_dscp: unspecified
+        target_dscp: unspecified
+      - contract_type: oob
+        description: Out-of-Band Outbound Traffic
+        name: ooband_out
+        qos_class: unspecified
+        scope: global
+        subjects:
+        - action: permit
+          apply_both_directions: false
+          contract_type: oob
+          directives:
+            enable_policy_compression: false
+            log: false
+          filters:
+          - mgmt_out
+          label_match_criteria: AtleastOne
+          name: ooband_out
+          qos_class: unspecified
+          target_dscp: unspecified
+        target_dscp: unspecified
+      filters:
+      - description: Management Inbound Traffic
+        filter_entries:
+        - arp_flag: unspecified
+          description: Allow ICMP
+          destination_port_from: unspecified
+          destination_port_to: unspecified
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: icmp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: icmp
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        - arp_flag: unspecified
+          description: Allow SNMP
+          destination_port_from: '161'
+          destination_port_to: '161'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: udp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: snmp
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        - arp_flag: unspecified
+          description: Allow HTTPS
+          destination_port_from: https
+          destination_port_to: https
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: tcp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: https
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+          tcp_session_rules:
+            acknowledgement: false
+            established: false
+            finish: false
+            reset: false
+            synchronize: false
+        - arp_flag: unspecified
+          description: Allow SSH
+          destination_port_from: '22'
+          destination_port_to: '22'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: tcp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: ssh
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: true
+          tcp_session_rules:
+            acknowledgement: false
+            established: true
+            finish: false
+            reset: false
+            synchronize: false
+        - arp_flag: unspecified
+          description: Nexus Dashboard 2022
+          destination_port_from: '2022'
+          destination_port_to: '2022'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: tcp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: nd_2022
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: true
+          tcp_session_rules:
+            acknowledgement: false
+            established: true
+            finish: false
+            reset: false
+            synchronize: false
+        - arp_flag: unspecified
+          description: Nexus Dashboard 5640-5671
+          destination_port_from: '5640'
+          destination_port_to: '5671'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: udp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: nd_5640
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        - arp_flag: unspecified
+          description: Nexus Dashboard 5965
+          destination_port_from: '5965'
+          destination_port_to: '5965'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: udp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: nd_5965
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        - arp_flag: unspecified
+          description: Nexus Dashboard 8884
+          destination_port_from: '8884'
+          destination_port_to: '8884'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: tcp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: nd_8884
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: true
+          tcp_session_rules:
+            acknowledgement: false
+            established: true
+            finish: false
+            reset: false
+            synchronize: false
+        - arp_flag: unspecified
+          description: Nexus Dashboard 9989
+          destination_port_from: '9989'
+          destination_port_to: '9989'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: tcp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: nd_9989
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: true
+          tcp_session_rules:
+            acknowledgement: false
+            established: true
+            finish: false
+            reset: false
+            synchronize: false
+        - arp_flag: unspecified
+          description: ND 30000-30001
+          destination_port_from: '30000'
+          destination_port_to: '30001'
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: tcp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: nd_30000
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: true
+          tcp_session_rules:
+            acknowledgement: false
+            established: true
+            finish: false
+            reset: false
+            synchronize: false
+        name: mgmt_in
+      - description: Management Outbound Traffic
+        filter_entries:
+        - arp_flag: unspecified
+          description: Allow All IP
+          destination_port_from: unspecified
+          destination_port_to: unspecified
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: unspecified
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: ip
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        - arp_flag: unspecified
+          description: Allow ICMP
+          destination_port_from: unspecified
+          destination_port_to: unspecified
+          ethertype: ip
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: icmp
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: icmp
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        name: mgmt_out
+    description: Built-In mgmt tenant
+    monitoring_policy: default
+    name: mgmt
+    networking:
+      bridge_domains:
+      - description: Asgard Inband
+        name: inb
+        subnets:
+        - gateway_ip: 10.92.0.254/24
+          template: advertise_external
+        template: inband_optimize
+      l3outs:
+      - description: Inband L3Out
+        enable_bgp: true
+        external_epgs:
+        - contracts:
+          - contract_type: provided
+            name: inband_out
+            qos_class: unspecified
+          - contract_type: consumed
+            name: inband_in
+            qos_class: unspecified
+          description: inband
+          flood_on_encapsulation: disabled
+          intra_epg_isolation: unenforced
+          label_match_criteria: AtleastOne
+          name: inband
+          preferred_group_member: false
+          qos_class: unspecified
+          subnets:
+          - aggregate:
+              aggregate_export: false
+              aggregate_import: false
+              aggregate_shared_routes: false
+            external_epg_classification:
+              external_subnets_for_external_epg: true
+              shared_security_import_subnet: false
+            route_control:
+              export_route_control_subnet: false
+              import_route_control_subnet: false
+              shared_route_control_subnet: false
+            subnets:
+            - 0.0.0.0/1
+            - 128.0.0.0/1
+          target_dscp: unspecified
+        l3_domain: l3out
+        logical_node_profiles:
+        - color_tag: yellow-green
+          description: Asgard Inband LNP
+          logical_interface_profiles:
+          - auto_state: disabled
+            bgp_peers:
+              address_type_controls:
+                af_mcast: false
+                af_ucast: true
+              addresses:
+              - 10.92.1.3
+              - 10.92.1.4
+              allowed_self_as_count: 3
+              bgp_controls:
+                allow_self_as: false
+                as_override: false
+                disable_peer_as_check: false
+                next_hop_self: false
+                send_community: true
+                send_domain_path: false
+                send_extended_community: true
+              peer_controls:
+                bidirectional_forwarding_detection: true
+                disable_connected_check: false
+              private_as_control:
+                remove_all_private_as: false
+                remove_private_as: false
+                replace_private_as_with_local_as: false
+            description: 142b-core01-02-l3out-vl101
+            encap_scope: local
+            encap_vlan: 11
+            interface_or_policy_group: l3out
+            interface_type: ext-svi
+            ipv6_dad: enabled
+            mode: trunk
+            mtu: inherit
+            name: Vlan11
+            qos_class: unspecified
+            svi_addresses:
+              primary_preferred_addresses:
+              - 10.92.1.1/29
+              - 10.92.1.2/29
+            target_dscp: unspecified
+          name: asgard-leaf201-202
+          nodes:
+          - node_id: 201
+            router_id: 10.92.1.201
+            use_router_id_as_loopback: true
+          - node_id: 202
+            router_id: 10.92.1.202
+            use_router_id_as_loopback: true
+          pod_id: 1
+          target_dscp: unspecified
+        name: inband
+        pim: false
+        pimv6: false
+        route_control_enforcement:
+          export: true
+          import: false
+        target_dscp: unspecified
+        vrf: inband
+      vrfs:
+      - communities: []
+        description: Built-In inb VRF
+        epg_esg_collection_for_vrfs:
+          contracts: []
+          label_match_criteria: AtleastOne
+        layer3_multicast: true
+        name: inband
+    node_management_addresses:
+      static_node_management_addresses:
+        apics_inband:
+        - ipv4_address: 10.92.0.1/24
+          ipv4_gateway: 10.92.0.254
+          management_epg: inband
+          pod_id: 1

@@ -1,0 +1,94 @@
+---
+#==========================
+#   Fabric - Variables
+#==========================
+fabric:
+  policies:
+    global:
+      dns_profiles:
+      - description: System DNS Profile
+        dns_domains:
+        - default_domain: false
+          domain: cisco.com
+        - default_domain: true
+          domain: rich.ciscolabs.com
+        dns_providers:
+        - dns_provider: 10.101.128.15
+          preferred: true
+        - dns_provider: 10.101.128.16
+          preferred: false
+        management_epg: ooband
+        name: default
+    pod:
+      date_and_time:
+      - administrative_state: enabled
+        display_format: local
+        master_mode: disabled
+        name: default
+        ntp_servers:
+        - description: Richfield AD1
+          hostname: 10.101.128.15
+          management_epg: ooband
+          maximum_polling_interval: 6
+          minimum_polling_interval: 4
+          preferred: false
+        - description: Richfield AD2
+          hostname: 10.101.128.16
+          management_epg: ooband
+          maximum_polling_interval: 6
+          minimum_polling_interval: 4
+          preferred: true
+        offset_state: enabled
+        server_state: disabled
+        stratum_value: 8
+        time_zone: America/Detroit
+      snmp:
+      - admin_state: enabled
+        contact: rich-lab@cisco.com
+        include_types:
+          audit_logs: true
+          events: true
+          faults: true
+          session_logs: true
+        location: Wakanda - Rack143A
+        name: default
+        snmp_client_groups:
+        - clients:
+          - address: 10.101.128.24
+          - address: 10.101.128.25
+          description: Inband Client Group
+          management_epg: inband
+          name: inband
+        - clients:
+          - address: 10.101.128.24
+          - address: 10.101.128.25
+          description: Out-of-Band Client Group
+          management_epg: ooband
+          name: ooband
+        snmp_communities:
+        - community_variable: 1
+          description: Community String 1
+        - community_variable: 2
+          description: Community String 2
+        snmp_destinations:
+        - host: 10.101.128.24
+          management_epg: ooband
+          port: 162
+          username: cisco_user1
+          v3_security_level: priv
+          version: v3
+        - community_variable: 1
+          host: 10.101.128.25
+          management_epg: ooband
+          port: 162
+          version: v2c
+        users:
+        - authorization_key: 1
+          authorization_type: hmac-sha1-96
+          privacy_key: 1
+          privacy_type: aes-128
+          username: cisco_user1
+  recommended_settings:
+    fabric_node_controls: true
+    l3_interface: true
+    pods: true

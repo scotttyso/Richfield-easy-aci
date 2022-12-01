@@ -1,0 +1,40 @@
+---
+#=====================================
+#   Tenants -> common - Variables
+#=====================================
+tenants:
+  common:
+    description: Built-In Common tenant
+    monitoring_policy: default
+    name: common
+    ndo:
+      description: common Schema
+      name: common
+      sites:
+      - name: Asgard
+      - name: Wakanda
+      templates:
+      - name: common
+        sites:
+        - Asgard
+        - Wakanda
+      - name: Asgard
+        sites:
+        - Asgard
+      - name: Wakanda
+        sites:
+        - Wakanda
+      users:
+      - admin
+      - tyscott
+    networking:
+      vrfs:
+      - description: Production VRF
+        epg_esg_collection_for_vrfs:
+          contracts: []
+          label_match_criteria: AtleastOne
+        layer3_multicast: true
+        name: prod
+        ndo:
+          template: common
+        preferred_group: true

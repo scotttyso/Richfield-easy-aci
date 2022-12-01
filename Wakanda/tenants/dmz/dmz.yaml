@@ -1,0 +1,39 @@
+---
+#==================================
+#   Tenants -> dmz - Variables
+#==================================
+tenants:
+  dmz:
+    application_profiles:
+    - monitoring_policy: default
+      name: nets
+      tenant: dmz
+    description: dmz tenant
+    monitoring_policy: default
+    name: dmz
+    networking:
+      bridge_domains:
+      - application_epg:
+          application_profile: nets
+          template: wakanda
+        application_profile: nets
+        description: DMZ Management
+        epg_to_aaep_vlans:
+        - 201
+        name: 10.96.201.0
+        subnets:
+        - gateway_ip: 10.96.201.1/24
+          template: advertise_external
+        template: dmz_optimize
+      - application_epg:
+          application_profile: nets
+          template: wakanda
+        application_profile: nets
+        description: DMZ General
+        epg_to_aaep_vlans:
+        - 202
+        name: 10.96.202.0
+        subnets:
+        - gateway_ip: 10.96.202.1/24
+          template: advertise_external
+        template: dmz_optimize

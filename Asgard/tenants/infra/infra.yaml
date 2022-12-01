@@ -1,0 +1,105 @@
+---
+#====================================
+#   Tenants -> infra - Variables
+#====================================
+tenants:
+  infra:
+    description: Built-In infra tenant
+    monitoring_policy: default
+    name: infra
+    networking:
+      l3outs:
+      - description: Multi-Site L3Out
+        enable_bgp: true
+        external_epgs:
+        - description: Multi-Site
+          flood_on_encapsulation: disabled
+          intra_epg_isolation: unenforced
+          label_match_criteria: AtleastOne
+          name: intersiteInstP
+          preferred_group_member: false
+          qos_class: unspecified
+          target_dscp: unspecified
+        l3_domain: l3out
+        logical_node_profiles:
+        - color_tag: yellow-green
+          description: Multi-Site Connectivity
+          logical_interface_profiles:
+          - description: 142b-core01-Eth1/23
+            encap_scope: local
+            encap_vlan: 4
+            interface_or_policy_group: eth1/29
+            interface_type: sub-interface
+            ipv6_dad: enabled
+            mode: trunk
+            mtu: '9150'
+            name: Eth1-29.4
+            primary_preferred_address: 10.92.4.0/31
+            qos_class: unspecified
+            target_dscp: unspecified
+          - description: 142c-core02-Eth1/23
+            encap_scope: local
+            encap_vlan: 4
+            interface_or_policy_group: eth1/30
+            interface_type: sub-interface
+            ipv6_dad: enabled
+            mode: trunk
+            mtu: '9150'
+            name: Eth1-30.4
+            primary_preferred_address: 10.92.4.2/31
+            qos_class: unspecified
+            target_dscp: unspecified
+          name: asgard-spine101
+          nodes:
+          - node_id: 101
+            router_id: 10.92.4.101
+          pod_id: 1
+          target_dscp: unspecified
+        - color_tag: yellow-green
+          description: Multi-Site Connectivity
+          logical_interface_profiles:
+          - description: 142b-core01-Eth1/24
+            encap_scope: local
+            encap_vlan: 4
+            interface_or_policy_group: eth1/29
+            interface_type: sub-interface
+            ipv6_dad: enabled
+            mode: trunk
+            mtu: '9150'
+            name: Eth1-29.4
+            primary_preferred_address: 10.92.4.4/31
+            qos_class: unspecified
+            target_dscp: unspecified
+          - description: 142b-core01-Eth1/24
+            encap_scope: local
+            encap_vlan: 4
+            interface_or_policy_group: eth1/30
+            interface_type: sub-interface
+            ipv6_dad: enabled
+            mode: trunk
+            mtu: '9150'
+            name: Eth1-30.4
+            primary_preferred_address: 10.92.4.6/31
+            qos_class: unspecified
+            target_dscp: unspecified
+          name: asgard-spine102
+          nodes:
+          - node_id: 102
+            router_id: 10.92.4.102
+          pod_id: 1
+          target_dscp: unspecified
+        name: intersite
+        pim: false
+        pimv6: false
+        route_control_enforcement:
+          export: true
+          import: false
+        target_dscp: unspecified
+        vrf: overlay-1
+      vrfs:
+      - description: Built-In infra VRF
+        epg_esg_collection_for_vrfs:
+          contracts: []
+          label_match_criteria: AtleastOne
+        layer3_multicast: true
+        name: overlay-1

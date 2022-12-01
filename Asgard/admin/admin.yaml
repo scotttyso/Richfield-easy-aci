@@ -1,0 +1,153 @@
+---
+#=========================
+#   Admin - Variables
+#=========================
+admin:
+  aaa:
+    authentication:
+      aaa:
+      - console:
+          login_domain: ''
+          realm: local
+        default:
+          login_domain: ''
+          realm: local
+        icmp_reachability:
+          retries: 1
+          timeout: 5
+          use_icmp_reachable_providers_only: true
+        name: default
+        remote_user_login_policy: no-login
+      radius:
+      - authorization_protocol: pap
+        hosts:
+        - 10.101.128.71
+        - 10.101.128.72
+        login_domain: RADIUS
+        management_epg: ooband
+        port: 1812
+        retries: 2
+        timeout: 5
+        type: radius
+      tacacs:
+      - accounting_include:
+          audit_logs: true
+          events: false
+          faults: false
+          session_logs: true
+        authorization_protocol: pap
+        hosts:
+        - 10.101.128.71
+        - 10.101.128.72
+        login_domain: RICH
+        management_epg: ooband
+        port: 49
+        retries: 2
+        timeout: 5
+    security:
+    - lockout_user:
+        enable_lockout: disable
+        lockout_duration: 60
+        max_failed_attempts: 5
+        max_failed_attempts_window: 5
+      maximum_validity_period: 24
+      password_change_interval: 48
+      password_change_interval_enforce: enable
+      password_changes_within_interval: 2
+      password_expiration_warn_time: 15
+      password_strength_check: true
+      user_passwords_to_store_count: 5
+      web_session_idle_timeout: 65525
+      web_token_timeout: 600
+  external-data-collectors:
+    smart_callhome:
+    - admin_state: enabled
+      contact_information: rich-lab@cisco.com
+      customer_contact_email: rich-lab@cisco.com
+      from_email: rich-lab@cisco.com
+      name: default
+      phone_contact: +1 408-555-5555
+      remote_destinations:
+      - admin_state: enabled
+        forwarding_facility: local7
+        hosts:
+        - 10.101.128.24
+        - 10.101.128.25
+        management_epg: ooband
+        port: 514
+        severity: information
+        transport: udp
+      reply_to_email: rich-lab@cisco.com
+      smart_destinations:
+      - admin_state: enabled
+        email: rich-lab@cisco.com
+        format: short-txt
+        rfc_compliant: true
+      smtp_server:
+        management_epg: ooband
+        port_number: 25
+        secure_smtp: false
+        smtp_server: smtp-ext.cisco.com
+      street_address: 4125 Highlander Parkway Richfield, OH 44286
+    syslog:
+    - admin_state: enabled
+      format: aci
+      name: default
+      remote_destinations:
+      - admin_state: enabled
+        forwarding_facility: local7
+        hosts:
+        - 10.101.128.24
+        - 10.101.128.25
+        management_epg: ooband
+        port: 514
+        severity: information
+        transport: udp
+      show_milliseconds_in_timestamp: true
+      show_time_zone_in_timestamp: true
+  firmware:
+    maintenance_group_policies:
+    - compatibility_check: true
+      graceful_upgrade: true
+      name: default
+      notify_conditions: notifyOnlyOnFailures
+      policy_type: switch
+      run_mode: pauseOnlyOnFailures
+      simulator: false
+      version_check_override: untriggered
+    maintenance_groups:
+    - maintenance_group_policy: default
+      name: MG_A
+      node_list:
+      - 101
+      - 201
+      start_now: false
+    - maintenance_group_policy: default
+      name: MG_B
+      node_list:
+      - 102
+      - 202
+      start_now: false
+  import-export:
+    configuration_backups:
+    - authentication_type: usePassword
+      configuration_export: []
+      description: LNX Backup Servers
+      format: json
+      include_secure_fields: true
+      management_epg: ooband
+      max_snapshot_count: 0
+      name: Every24Hours
+      protocol: sftp
+      remote_hosts:
+      - lnx1.rich.ciscolabs.com
+      - lnx2.rich.ciscolabs.com
+      remote_path: /tmp
+      remote_port: 22
+      schedule:
+        days: every-day
+        hour: 0
+        minute: 15
+      snapshot: false
+      start_now: false
+      username: tyscott

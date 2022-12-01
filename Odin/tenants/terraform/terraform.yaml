@@ -1,0 +1,32 @@
+---
+#========================================
+#   Tenants -> terraform - Variables
+#========================================
+tenants:
+  terraform:
+    application_profiles:
+    - monitoring_policy: default
+      name: mgmt
+      ndo_template: terraform
+      tenant: terraform
+    - monitoring_policy: default
+      name: terraform
+      ndo_template: terraform
+      tenant: terraform
+    description: Terraform Test
+    monitoring_policy: default
+    name: terraform
+    ndo:
+      description: Terraform Schema
+      name: terraform
+      sites:
+      - name: Asgard
+      - name: Wakanda
+      templates:
+      - name: terraform
+        sites:
+        - Asgard
+        - Wakanda
+      users:
+      - admin
+      - tyscott

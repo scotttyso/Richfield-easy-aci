@@ -1,0 +1,53 @@
+---
+#=========================================
+#   Tenants -> skunkworks - Variables
+#=========================================
+tenants:
+  skunkworks:
+    application_profiles:
+    - application_epgs:
+      - bridge_domain: 10.239.21.0
+        description: Jusbarks Skunkworks21
+        monitoring_policy: default
+        name: dev
+        template: asgard
+      - bridge_domain: 10.239.22.0
+        description: Jusbarks Skunkworks22
+        monitoring_policy: default
+        name: maas
+        template: asgard
+      monitoring_policy: default
+      name: k8s
+      tenant: skunkworks
+    - application_epgs:
+      - bridge_domain: 10.239.10.0
+        description: Jusbarks Skunkworks10
+        monitoring_policy: default
+        name: services
+        template: asgard
+      monitoring_policy: default
+      name: mgmt
+      tenant: skunkworks
+    description: JB skunkworks
+    monitoring_policy: default
+    name: skunkworks
+    networking:
+      bridge_domains:
+      - description: Jusbarks SkunkWorks10
+        name: 10.239.10.0
+        subnets:
+        - gateway_ip: 10.239.10.1/24
+          template: advertise_external
+        template: prod_optimize
+      - description: Jusbarks SkunkWorks21
+        name: 10.239.21.0
+        subnets:
+        - gateway_ip: 10.239.21.1/24
+          template: advertise_external
+        template: prod_optimize
+      - description: Jusbarks SkunkWorks22
+        name: 10.239.22.0
+        subnets:
+        - gateway_ip: 10.239.22.1/24
+          template: advertise_external
+        template: prod_optimize

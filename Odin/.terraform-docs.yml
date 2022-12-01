@@ -1,0 +1,64 @@
+version: '>= 0.14.0'
+
+formatter: markdown table
+
+content: |-
+  [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+  [![Developed by: Cisco](https://img.shields.io/badge/Developed%20by-Cisco-blue)](https://developer.cisco.com)
+
+  # Easy ACI - Comprehensive example for ACI & NDO
+
+  ## Environment Variables
+
+  ### Terraform Cloud/Enterprise - Workspace Variables
+  - Add variable apicPass with the value of [your-apic-password]
+
+  ### Linux and Windows
+  ```bash
+  export TF_VAR_apicPass="<your-apic-password>"
+  ```
+
+  ## Auto-completion Notes:
+
+  If you would like to enable Auto Completion in the Pools File for ip, mac, uuid, wwnn, and wwpn perform the following in Visual Studio Code.
+
+  ### Install the YAML extension by Red Hat
+  `Extensions`: Search for YAML and Select the 'YAML Language Support by Red Hat'
+
+  ### Add the YAML Schema's below to the Visual Studio Code Settings
+
+  `Settings` » `Settings`: Search for `YAML:Schemas`.
+
+  Click: `Edit in settings.json`
+
+  Configure the following in `yaml.schemas`
+  ```bash
+    "https://raw.githubusercontent.com/terraform-cisco-modules/easy-aci-complete/main/schemas/pools.json": "pools.yaml"
+  ```
+
+  {{ .Requirements }}
+  {{ .Providers }}
+  {{ .Modules }}
+  
+  ## NOTE:
+  **When the Data is merged from the YAML files, it will run through the modules using for_each loop(s).  Sensitive Variables cannot be added to a for_each loop, instead use the variables below to add sensitive values for policies.**
+
+  {{ .Inputs }}
+  {{ .Outputs }}
+
+  # Sub Modules
+
+  If you want to see documentation on Variables for Submodules use the links below:
+
+  ## Terraform Registry
+
+
+output:
+  file: README.md
+  mode: replace
+
+sort:
+  enabled: false
+
+settings:
+  read-comments: false

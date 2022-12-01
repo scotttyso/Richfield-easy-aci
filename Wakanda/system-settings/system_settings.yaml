@@ -1,0 +1,23 @@
+---
+#===================================
+#   System Settings - Variables
+#===================================
+system_settings:
+  apic_connectivity_preference:
+    interface_to_use_for_external_connections: ooband
+  bgp:
+  - autonomous_system_number: 65502
+  bgp_route_reflectors:
+    pods:
+    - pod_id: 1
+      route_reflector_nodes:
+      - 101
+      - 102
+  recommended_settings:
+    coop_group: true
+    endpoint_controls: true
+    fabric_wide_settings: true
+    global_aes_encryption_settings: true
+    isis_policy: true
+    port_tracking: true
+    ptp_and_latency_measurement: true
