@@ -5,28 +5,53 @@
 tenants:
   terraform:
     application_profiles:
-    - monitoring_policy: default
+    - create: false
+      monitoring_policy: default
       name: mgmt
-      ndo_template: terraform
+      ndo:
+        schema: terraform
+        template: terraform
       tenant: terraform
-    - monitoring_policy: default
+    - create: true
+      monitoring_policy: default
       name: terraform
-      ndo_template: terraform
+      ndo:
+        schema: terraform
+        template: terraform
       tenant: terraform
+    create: false
     description: Terraform Test
     monitoring_policy: default
     name: terraform
     ndo:
-      description: Terraform Schema
-      name: terraform
+      schemas:
+      - create: false
+        name: common
+      - create: false
+        description: Terraform Schema
+        name: terraform
+        templates:
+        - name: terraform
+          sites:
+          - Asgard
+          - Wakanda
       sites:
-      - name: Asgard
-      - name: Wakanda
-      templates:
-      - name: terraform
-        sites:
-        - Asgard
-        - Wakanda
+        - name: Asgard
+        - name: Wakanda
       users:
-      - admin
-      - tyscott
+        - admin
+        - tyscott
+    networking:
+      bridge_domains:
+      - application_epg:
+          application_profile: terraform
+          template: terraform
+        application_profile: mgmt
+        description: Management
+        epg_to_aaep_vlans:
+        - 1201
+        name: 10.88.201.0
+        subnets:
+        - gateway_ip: 10.88.201.1/24
+          template: advertise_external
+        template: terraform_stretched

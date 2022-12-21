@@ -7,13 +7,13 @@
 annotation = "orchestrator:terraform:easy-aci-v2.0"
 annotations = [
   {
-    key   = "orchestrator"
+    key = "orchestrator"
     value = "terraform:easy-aci:v2.0"
   }
 ]
-apicHostname    = "asgard-apic01.rich.ciscolabs.com"
-apicUser        = "admin"
-apic_version    = "5.2(4e)"
+apicHostname = "wakanda-apic01.rich.ciscolabs.com"
+apicUser = "admin"
+apic_version = "5.2(4e)"
 controller_type = "apic"
 management_epgs = [
   {

@@ -4,37 +4,52 @@
 #=====================================
 tenants:
   common:
+    create: false
     description: Built-In Common tenant
     monitoring_policy: default
     name: common
     ndo:
-      description: common Schema
-      name: common
+      schemas:
+        - create: true
+          description: common Schema
+          name: common
+          templates:
+          - name: common
+            sites:
+            - Asgard
+            - Wakanda
+          - name: Asgard
+            sites:
+            - Asgard
+          - name: Wakanda
+            sites:
+            - Wakanda
       sites:
       - name: Asgard
       - name: Wakanda
-      templates:
-      - name: common
-        sites:
-        - Asgard
-        - Wakanda
-      - name: Asgard
-        sites:
-        - Asgard
-      - name: Wakanda
-        sites:
-        - Wakanda
       users:
       - admin
       - tyscott
     networking:
       vrfs:
-      - description: Production VRF
+      - create: false
+        description: Production VRF
         epg_esg_collection_for_vrfs:
           contracts: []
           label_match_criteria: AtleastOne
         layer3_multicast: true
         name: prod
         ndo:
+          schema: common
           template: common
         preferred_group: true
+      - description: DMZ VRF
+        epg_esg_collection_for_vrfs:
+          contracts: []
+          label_match_criteria: AtleastOne
+        layer3_multicast: true
+        name: dmz
+        ndo:
+          schema: common
+          template: common
+        preferred_group: false

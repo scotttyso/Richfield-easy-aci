@@ -11,8 +11,7 @@ defaults:
     monitoring_policy: default
     policy_tenant: 'common'
     ndo:
-      schemas: # REQUIRED FOR NDO
-        create: true
+      schema: # REQUIRED FOR NDO
         name: '**REQUIRED**'
         templates:
           name: '**REQUIRED**'
@@ -446,7 +445,6 @@ defaults:
         bgp_timers_per_address_family: []
         communities: []
         controller_type: apic
-        create: true
         description: ''
         eigrp_timers_per_address_family: []
         endpoint_retention_policy: default

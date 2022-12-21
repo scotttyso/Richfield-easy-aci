@@ -9,7 +9,7 @@ defaults:
       # Remember to Test without
       pods:
         - pod_id: 1
-          route_reflector_nodes: []
+          route_reflector_nodes: [101, 102]
     coop_group:
       annotation: ''
       type: strict

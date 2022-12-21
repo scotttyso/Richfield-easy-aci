@@ -1,0 +1,96 @@
+---
+#===================================
+#   Tenants -> core - Variables
+#===================================
+tenants:
+  core:
+    application_profiles:
+    - monitoring_policy: default
+      name: nets
+      tenant: core
+    description: core tenant
+    monitoring_policy: default
+    name: core
+    networking:
+      bridge_domains:
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Out-of-Band
+        epg_to_aaep_vlans:
+        - 64
+        name: 192.168.64.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Management
+        epg_to_aaep_vlans:
+        - 125
+        name: 10.100.125.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Migration
+        epg_to_aaep_vlans:
+        - 126
+        name: 10.100.126.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Storage
+        epg_to_aaep_vlans:
+        - 127
+        name: 10.100.127.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: FW Inside
+        epg_to_aaep_vlans:
+        - 998
+        name: 10.100.1.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: FW Outside
+        epg_to_aaep_vlans:
+        - 999
+        name: 64.100.14.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Lab Servers
+        epg_to_aaep_vlans:
+        - 3001
+        name: 10.101.128.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Nexus Dashboard MGMT
+        epg_to_aaep_vlans:
+        - 3003
+        name: 10.101.130.0
+        template: core_optimize
+      - application_epg:
+          application_profile: nets
+          template: asgard
+        application_profile: nets
+        description: Nexus Dashboard DATA
+        epg_to_aaep_vlans:
+        - 3004
+        name: 10.101.131.0
+        template: core_optimize

@@ -38,7 +38,7 @@ module "access" {
 
 module "admin" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/admin/aci"
   version = ">= 1.0.2"
@@ -105,7 +105,7 @@ module "built_in_tenants" {
 
 module "fabric" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/fabric/aci"
   version = ">= 1.0.2"
@@ -141,7 +141,7 @@ module "fabric" {
 
 module "switch" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/switch/aci"
   version = ">= 1.0.2"
@@ -165,7 +165,7 @@ module "system_settings" {
 
 module "tenants" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/tenants/aci"
   version = ">= 1.0.2"
