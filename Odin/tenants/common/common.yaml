@@ -4,6 +4,64 @@
 #=====================================
 tenants:
   common:
+    contracts:
+      contracts:
+      - contract_type: taboo
+        description: A Taboo Contract
+        name: taboo_contract
+        qos_class: unspecified
+        scope: global
+        subjects:
+        - action: permit
+          apply_both_directions: true
+          contract_type: taboo
+          directives:
+            enable_policy_compression: false
+            log: false
+          filters:
+          - any
+          label_match_criteria: AtleastOne
+          name: taboo_contract
+          qos_class: unspecified
+          target_dscp: unspecified
+        target_dscp: unspecified
+      - contract_type: standard
+        description: Any Contract
+        name: any
+        qos_class: unspecified
+        scope: global
+        subjects:
+        - action: permit
+          apply_both_directions: true
+          contract_type: standard
+          directives:
+            enable_policy_compression: false
+            log: false
+          filters:
+          - any
+          label_match_criteria: AtleastOne
+          name: any
+          qos_class: unspecified
+          target_dscp: unspecified
+        target_dscp: unspecified
+      filters:
+      - description: Default Filter
+        filter_entries:
+        - arp_flag: unspecified
+          description: Allow Any
+          destination_port_from: unspecified
+          destination_port_to: unspecified
+          ethertype: unspecified
+          icmpv4_type: unspecified
+          icmpv6_type: unspecified
+          ip_protocol: unspecified
+          match_dscp: unspecified
+          match_only_fragments: false
+          name: any
+          source_port_from: unspecified
+          source_port_to: unspecified
+          stateful: false
+        name: any
     create: false
     description: Built-In Common tenant
     monitoring_policy: default
@@ -31,8 +89,65 @@ tenants:
       - admin
       - tyscott
     networking:
+      l3outs:
+      - description: Asgard DMZ L3Out
+        enable_bgp: true
+        external_epgs:
+        - description: Asgard DMZ
+          flood_on_encapsulation: disabled
+          intra_epg_isolation: unenforced
+          label_match_criteria: AtleastOne
+          name: dmz
+          preferred_group_member: false
+          qos_class: unspecified
+          subnets:
+          - aggregate:
+              aggregate_export: false
+              aggregate_import: false
+              aggregate_shared_routes: false
+            external_epg_classification:
+              external_subnets_for_external_epg: true
+              shared_security_import_subnet: false
+            route_control:
+              export_route_control_subnet: false
+              import_route_control_subnet: false
+              shared_route_control_subnet: false
+            subnets:
+            - 0.0.0.0/1
+            - 128.0.0.0/1
+          target_dscp: unspecified
+        name: asgard-dmz
+        vrf: dmz
+      - description: Asgard Production L3Out
+        enable_bgp: true
+        external_epgs:
+        - description: Asgard Prod
+          flood_on_encapsulation: disabled
+          intra_epg_isolation: unenforced
+          label_match_criteria: AtleastOne
+          name: prod
+          preferred_group_member: true
+          qos_class: unspecified
+          subnets:
+          - aggregate:
+              aggregate_export: false
+              aggregate_import: false
+              aggregate_shared_routes: false
+            external_epg_classification:
+              external_subnets_for_external_epg: true
+              shared_security_import_subnet: false
+            route_control:
+              export_route_control_subnet: false
+              import_route_control_subnet: false
+              shared_route_control_subnet: false
+            subnets:
+            - 0.0.0.0/1
+            - 128.0.0.0/1
+          target_dscp: unspecified
+        name: asgard-prod
+        vrf: prod
       vrfs:
-      - create: false
+      - create: true
         description: Production VRF
         epg_esg_collection_for_vrfs:
           contracts: []

@@ -66,9 +66,9 @@ module "built_in_tenants" {
   depends_on = [
     module.access
   ]
-  source  = "terraform-cisco-modules/tenants/aci"
-  version = ">= 1.0.2"
-
+  source = "/home/tyscott/terraform-cisco-modules/terraform-aci-tenants"
+  #source  = "terraform-cisco-modules/tenants/aci"
+  #version = ">= 1.0.2"
   for_each = {
     for v in lookup(local.model, "tenants", []) : v.name => v if length(
       regexall("^(common|infra|mgmt)$", v.name)
@@ -167,9 +167,9 @@ module "tenants" {
   depends_on = [
     module.built_in_tenants
   ]
-  source  = "terraform-cisco-modules/tenants/aci"
-  version = ">= 1.0.2"
-
+  source = "/home/tyscott/terraform-cisco-modules/terraform-aci-tenants"
+  #source  = "terraform-cisco-modules/tenants/aci"
+  #version = ">= 1.0.2"
   for_each = {
     for v in lookup(local.model, "tenants", []) : v.name => v if length(
       regexall("^(common|infra|mgmt)$", v.name)
