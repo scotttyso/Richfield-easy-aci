@@ -37,6 +37,8 @@ templates:
         allow_promiscuous: reject
         forged_transmits: reject
         mac_changes: reject
+      sites:
+      - Wakanda
       switch_provider: VMware
     epg_to_aaeps:
     - aaep: trunkAep

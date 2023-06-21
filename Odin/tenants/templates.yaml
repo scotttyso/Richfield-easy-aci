@@ -6,7 +6,6 @@ templates:
   application_epgs:
   - domains:
     - name: access
-      sites: [Asgard, Wakanda]
     - deploy_immediacy: immediate
       domain_type: vmm
       enhanced_lag_policy: null
@@ -16,7 +15,8 @@ templates:
         allow_promiscuous: reject
         forged_transmits: reject
         mac_changes: reject
-      sites: [Asgard]
+      sites:
+      - Asgard
       switch_provider: VMware
     - deploy_immediacy: immediate
       domain_type: vmm
@@ -27,11 +27,9 @@ templates:
         allow_promiscuous: reject
         forged_transmits: reject
         mac_changes: reject
-      sites: [Wakanda]
+      sites:
+      - Wakanda
       switch_provider: VMware
-    epg_to_aaeps:
-    - aaep: trunkAep
-      mode: trunk
     epg_type: standard
     flood_in_encapsulation: disabled
     has_multicast_source: false
@@ -39,8 +37,12 @@ templates:
     label_match_criteria: AtleastOne
     ndo:
       schema: terraform
+      sites:
+      - Asgard
+      - Wakanda
       template: terraform
-    preferred_group_member: true
+    ndo_settings: terraform
+    preferred_group_member: false
     qos_class: unspecified
     template_name: terraform
     useg_epg: false
@@ -50,23 +52,19 @@ templates:
       intersite_bum_traffic_allow: true
       intersite_l2_stretch: true
       optimize_wan_bandwidth: false
-    dhcp_relay_labels:
-    - names:
-      - ad1
-      - ad2
-      scope: infra
     general:
       advertise_host_routes: true
-      arp_flooding: true
+      arp_flooding: false
       endpoint_retention_policy: default
       igmp_interface_policy: default
       igmp_snooping_policy: default
       ipv6_l3_unknown_multicast: flood
-      l2_unknown_unicast: flood
+      l2_unknown_unicast: proxy
       l3_unknown_multicast_flooding: flood
       limit_ip_learn_to_subnets: true
       mld_snoop_policy: default
       multi_destionation_flooding: bd-flood
+      ndo_settings: terraform
       pim: false
       pimv6: false
       template_name: terraform_stretched
@@ -74,8 +72,8 @@ templates:
       vrf:
         name: dmz
         schema: common
-        tenant: common
         template: common
+        tenant: common
     l3_configurations:
       associated_l3outs:
       - l3outs:
@@ -88,85 +86,10 @@ templates:
     ndo:
       schema: terraform
       sites:
-        - Asgard
-        - Wakanda
+      - Asgard
+      - Wakanda
       template: terraform
     template_name: terraform_stretched
-  - advanced/troubleshooting:
-      disable_ip_data_plane_learning_for_pbr: false
-      intersite_bum_traffic_allow: false
-      intersite_l2_stretch: false
-      optimize_wan_bandwidth: false
-    general:
-      advertise_host_routes: false
-      arp_flooding: false
-      endpoint_retention_policy: default
-      igmp_interface_policy: default
-      igmp_snooping_policy: default
-      ipv6_l3_unknown_multicast: flood
-      l2_unknown_unicast: proxy
-      l3_unknown_multicast_flooding: flood
-      limit_ip_learn_to_subnets: true
-      mld_snoop_policy: default
-      multi_destionation_flooding: bd-flood
-      pim: false
-      pimv6: false
-      template_name: inband_optimize
-      type: regular
-      vrf:
-        name: inband
-        tenant: mgmt
-    l3_configurations:
-      associated_l3outs:
-      - l3outs:
-        - inband
-        tenant: mgmt
-      ep_move_detection_mode: false
-      nd_policy: default
-      unicast_routing: true
-    template_name: inband_optimize
-  - advanced/troubleshooting:
-      disable_ip_data_plane_learning_for_pbr: false
-      intersite_bum_traffic_allow: false
-      intersite_l2_stretch: false
-      optimize_wan_bandwidth: false
-    dhcp_relay_labels:
-    - names:
-      - ad1
-      - ad2
-      scope: infra
-    general:
-      advertise_host_routes: false
-      arp_flooding: true
-      endpoint_retention_policy: default
-      igmp_interface_policy: default
-      igmp_snooping_policy: default
-      ipv6_l3_unknown_multicast: flood
-      l2_unknown_unicast: flood
-      l3_unknown_multicast_flooding: flood
-      limit_ip_learn_to_subnets: true
-      mld_snoop_policy: default
-      multi_destionation_flooding: bd-flood
-      pim: false
-      pimv6: false
-      template_name: prod_stretched
-      type: regular
-      vrf:
-        name: prod
-        tenant: common
-        ndo:
-          schema: common
-          temlplate: common
-    l3_configurations:
-      associated_l3outs:
-      - l3outs:
-        - asgard-prod
-        - wakanda-prod
-        tenant: common
-      ep_move_detection_mode: true
-      nd_policy: default
-      unicast_routing: true
-    template_name: prod_optimize
   subnets:
   - ip_data_plane_learning: enabled
     make_this_ip_address_primary: false

@@ -5,53 +5,70 @@
 tenants:
   terraform:
     application_profiles:
-    - create: false
+    - create: true
       monitoring_policy: default
       name: mgmt
       ndo:
         schema: terraform
         template: terraform
       tenant: terraform
-    - create: true
-      monitoring_policy: default
+    - monitoring_policy: default
       name: terraform
       ndo:
         schema: terraform
         template: terraform
       tenant: terraform
-    create: false
+    create: true
     description: Terraform Test
     monitoring_policy: default
     name: terraform
     ndo:
       schemas:
-      - create: false
-        name: common
-      - create: false
-        description: Terraform Schema
+      - create: true
+        description: terraform Schema
         name: terraform
         templates:
         - name: terraform
           sites:
           - Asgard
           - Wakanda
-      sites:
         - name: Asgard
+          sites:
+          - Asgard
         - name: Wakanda
+          sites:
+          - Wakanda
+      - create: false
+        name: common
+      sites:
+      - name: Asgard
+      - name: Wakanda
       users:
-        - admin
-        - tyscott
+      - admin
+      - tyscott
     networking:
       bridge_domains:
       - application_epg:
           application_profile: terraform
           template: terraform
-        application_profile: mgmt
-        description: Management
+        application_profile: terraform
+        description: Terraform VLAN
         epg_to_aaep_vlans:
         - 1201
         name: 10.88.201.0
         subnets:
         - gateway_ip: 10.88.201.1/24
+          template: advertise_external
+        template: terraform_stretched
+      - application_epg:
+          application_profile: terraform
+          template: terraform
+        application_profile: terraform
+        description: Terraform VLAN
+        epg_to_aaep_vlans:
+        - 1202
+        name: 10.88.202.0
+        subnets:
+        - gateway_ip: 10.88.202.1/24
           template: advertise_external
         template: terraform_stretched

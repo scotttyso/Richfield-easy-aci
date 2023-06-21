@@ -1,19 +1,25 @@
+#_______________________________________________________________________
+#
+# Terraform Required Parameters - Intersight Provider
+# https://registry.terraform.io/providers/CiscoDevNet/intersight/latest
+#_______________________________________________________________________
+
 terraform {
-  required_version = ">= 1.3.6"
   required_providers {
     aci = {
-      source  = "ciscodevnet/aci"
-      version = ">= 2.5.2"
+      source  = "CiscoDevNet/aci"
+      version = "2.8.0"
     }
     mso = {
-      source  = "ciscodevnet/mso"
-      version = ">= 0.7.1"
+      source  = "CiscoDevNet/mso"
+      version = "0.10.0"
     }
     utils = {
       source  = "netascode/utils"
-      version = ">= 0.2.1"
+      version = ">= 0.1.2"
     }
   }
+  required_version = ">= 1.3.0"
 }
 
 provider "aci" {

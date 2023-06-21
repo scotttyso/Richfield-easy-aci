@@ -21,7 +21,7 @@ module "access" {
     module.system_settings
   ]
   source  = "terraform-cisco-modules/access/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation      = var.annotation
   annotations     = var.annotations
@@ -38,10 +38,10 @@ module "access" {
 
 module "admin" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/admin/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation      = var.annotation
   annotations     = var.annotations
@@ -67,7 +67,7 @@ module "built_in_tenants" {
     module.access
   ]
   source  = "terraform-cisco-modules/tenants/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   for_each = {
     for v in lookup(local.model, "tenants", []) : v.name => v if length(
@@ -105,10 +105,10 @@ module "built_in_tenants" {
 
 module "fabric" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/fabric/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation      = var.annotation
   annotations     = var.annotations
@@ -141,10 +141,10 @@ module "fabric" {
 
 module "switch" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/switch/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation  = var.annotation
   annotations = var.annotations
@@ -153,7 +153,7 @@ module "switch" {
 
 module "system_settings" {
   source  = "terraform-cisco-modules/system-settings/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation   = var.annotation
   annotations  = var.annotations
@@ -165,10 +165,10 @@ module "system_settings" {
 
 module "tenants" {
   depends_on = [
-    #module.built_in_tenants
+    module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/tenants/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   for_each = {
     for v in lookup(local.model, "tenants", []) : v.name => v if length(

@@ -20,9 +20,8 @@ module "access" {
   depends_on = [
     module.system_settings
   ]
-  #source = "/home/tyscott/terraform-cisco-modules/terraform-aci-access"
   source  = "terraform-cisco-modules/access/aci"
-  version = "1.0.8"
+  version = "2.0.1"
 
   annotation      = var.annotation
   annotations     = var.annotations
@@ -42,7 +41,7 @@ module "admin" {
     module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/admin/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation      = var.annotation
   annotations     = var.annotations
@@ -67,9 +66,9 @@ module "built_in_tenants" {
   depends_on = [
     module.access
   ]
-  source = "/home/tyscott/terraform-cisco-modules/terraform-aci-tenants"
-  #source  = "terraform-cisco-modules/tenants/aci"
-  #version = ">= 1.0.2"
+  source  = "terraform-cisco-modules/tenants/aci"
+  version = "2.0.1"
+
   for_each = {
     for v in lookup(local.model, "tenants", []) : v.name => v if length(
       regexall("^(common|infra|mgmt)$", v.name)
@@ -109,7 +108,7 @@ module "fabric" {
     module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/fabric/aci"
-  version = ">= 1.0.4"
+  version = "2.0.1"
 
   annotation      = var.annotation
   annotations     = var.annotations
@@ -145,7 +144,7 @@ module "switch" {
     module.built_in_tenants
   ]
   source  = "terraform-cisco-modules/switch/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation  = var.annotation
   annotations = var.annotations
@@ -154,7 +153,7 @@ module "switch" {
 
 module "system_settings" {
   source  = "terraform-cisco-modules/system-settings/aci"
-  version = ">= 1.0.2"
+  version = "2.0.1"
 
   annotation   = var.annotation
   annotations  = var.annotations
@@ -168,9 +167,9 @@ module "tenants" {
   depends_on = [
     module.built_in_tenants
   ]
-  source = "/home/tyscott/terraform-cisco-modules/terraform-aci-tenants"
-  #source  = "terraform-cisco-modules/tenants/aci"
-  #version = ">= 1.0.2"
+  source  = "terraform-cisco-modules/tenants/aci"
+  version = "2.0.1"
+
   for_each = {
     for v in lookup(local.model, "tenants", []) : v.name => v if length(
       regexall("^(common|infra|mgmt)$", v.name)

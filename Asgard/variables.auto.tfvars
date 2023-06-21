@@ -4,16 +4,16 @@
 #____________________________________________________________
 
 # Begin Variables
-annotation = "orchestrator:terraform:easy-aci-v2.0"
+annotation = "orchestrator:terraform"
 annotations = [
   {
     key = "orchestrator"
-    value = "terraform:easy-aci:v2.0"
+    value = "terraform:easy-aci:v2.0.1"
   }
 ]
 apicHostname = "asgard-apic01.rich.ciscolabs.com"
 apicUser = "admin"
-apic_version = "5.2(6e)"
+apic_version = "6.0(2h)"
 controller_type = "apic"
 management_epgs = [
   {
